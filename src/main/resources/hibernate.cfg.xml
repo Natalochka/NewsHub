@@ -5,11 +5,16 @@
 
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="connection.url">jdbc:oracle:thin:@//localhost:1521/xe</property>
         <property name="connection.user">newshub</property>
-        <property name="connection.password">123</property>
         <property name="hibernate.dialeсt">org.hibernate.dialect.Oracle10gDialect </property>
         <property name="hbm2ddl.auto">update</property>
+        <mapping class="com.newshub.core.domain.UsersEntity"/>
+        <mapping class="com.newshub.core.domain.UserTypesEntity"/>
+        <mapping class="com.newshub.core.domain.ArticlesEntity"/>
+        <mapping class="com.newshub.core.domain.CommentsEntity"/>
+        <mapping class="com.newshub.core.domain.TagsEntity"/>
+        <mapping class="com.newshub.core.domain.TagsArticlesEntity"/>
     </session-factory>
 </hibernate-configuration>

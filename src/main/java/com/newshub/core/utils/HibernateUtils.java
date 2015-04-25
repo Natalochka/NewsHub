@@ -16,8 +16,7 @@ public class HibernateUtils {
     private static Configuration configuration;
     private Session session;
     private Transaction transaction;
-
-
+    
     public HibernateUtils (){
         session = sessionFactory.openSession();
         Locale.setDefault(Locale.ENGLISH);
@@ -35,4 +34,5 @@ public class HibernateUtils {
     public Session getSession() {
         return session;
     }
+    
 }

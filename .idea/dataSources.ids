@@ -7,5 +7,67 @@
     </database-info>
     <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
     <schema name="NEWSHUB" catalog=""/>
+    <table name="ARTICLES" schema="NEWSHUB" catalog="" type="TABLE">
+      <column name="ID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <column name="TITLE" sqlType="VARCHAR2" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CONTENT" sqlType="CLOB" precision="4000" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="DATE_AND_TIME" sqlType="DATE" precision="7" scale="0" nullable="true" jdbcType="93"/>
+      <column name="FRONT_NUMBERING" sqlType="NUMBER" precision="10" scale="0" nullable="true" jdbcType="3"/>
+      <column name="FEATURED" sqlType="NUMBER" precision="1" scale="0" nullable="true" jdbcType="3"/>
+      <column name="APPROVED" sqlType="NUMBER" precision="1" scale="0" nullable="true" jdbcType="3"/>
+      <column name="EDITED" sqlType="NUMBER" precision="1" scale="0" nullable="true" jdbcType="3"/>
+      <primary-key name="SYS_C0010168" columns="ID"/>
+      <exported-key name="SYS_C0010177" table="COMMENTS" schema="NEWSHUB" catalog="" columns="ARTICLE_ID"/>
+      <exported-key name="SYS_C0010185" table="TAGS_ARTICLES" schema="NEWSHUB" catalog="" columns="ARTICLE_ID"/>
+      <index name="SYS_C0010169" unique="true" columns="FRONT_NUMBERING"/>
+    </table>
+    <table name="ARTICLES_ID" schema="NEWSHUB" catalog="" type="SEQUENCE"/>
+    <table name="COMMENTS" schema="NEWSHUB" catalog="" type="TABLE">
+      <column name="ID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <column name="CONTENT" sqlType="CLOB" precision="4000" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="DATE_AND_TIME" sqlType="DATE" precision="7" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ARTICLE_ID" sqlType="NUMBER" precision="10" scale="0" nullable="true" jdbcType="3"/>
+      <column name="PARENT_COMMENT_ID" sqlType="NUMBER" precision="10" scale="0" nullable="true" jdbcType="3"/>
+      <column name="USER_ID" sqlType="NUMBER" precision="10" scale="0" nullable="true" jdbcType="3"/>
+      <primary-key name="SYS_C0010176" columns="ID"/>
+      <foreign-key name="SYS_C0010177" columns="ARTICLE_ID" ref-table="ARTICLES" ref-schema="NEWSHUB" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="SYS_C0010178" columns="PARENT_COMMENT_ID" ref-table="COMMENTS" ref-schema="NEWSHUB" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="SYS_C0010179" columns="USER_ID" ref-table="USERS" ref-schema="NEWSHUB" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <exported-key name="SYS_C0010178" table="COMMENTS" schema="NEWSHUB" catalog="" columns="PARENT_COMMENT_ID"/>
+    </table>
+    <table name="COMMENTS_ID" schema="NEWSHUB" catalog="" type="SEQUENCE"/>
+    <table name="TAGS" schema="NEWSHUB" catalog="" type="TABLE">
+      <column name="ID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <column name="TAG_NAME" sqlType="VARCHAR2" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="SYS_C0010181" columns="ID"/>
+      <exported-key name="SYS_C0010186" table="TAGS_ARTICLES" schema="NEWSHUB" catalog="" columns="TAG_ID"/>
+    </table>
+    <table name="TAGS_ARTICLES" schema="NEWSHUB" catalog="" type="TABLE">
+      <column name="ARTICLE_ID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <column name="TAG_ID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <primary-key name="SYS_C0010184" columns="ARTICLE_ID,TAG_ID"/>
+      <foreign-key name="SYS_C0010185" columns="ARTICLE_ID" ref-table="ARTICLES" ref-schema="NEWSHUB" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="SYS_C0010186" columns="TAG_ID" ref-table="TAGS" ref-schema="NEWSHUB" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+    </table>
+    <table name="TAGS_ID" schema="NEWSHUB" catalog="" type="SEQUENCE"/>
+    <table name="USERS" schema="NEWSHUB" catalog="" type="TABLE">
+      <column name="ID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <column name="FULL_NAME" sqlType="VARCHAR2" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NICKNAME" sqlType="VARCHAR2" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PASSWORD" sqlType="VARCHAR2" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMAIL" sqlType="VARCHAR2" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USER_TYPE_ID" sqlType="NUMBER" precision="10" scale="0" nullable="true" jdbcType="3"/>
+      <primary-key name="SYS_C0010173" columns="ID"/>
+      <foreign-key name="SYS_C0010174" columns="USER_TYPE_ID" ref-table="USER_TYPES" ref-schema="NEWSHUB" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <exported-key name="SYS_C0010179" table="COMMENTS" schema="NEWSHUB" catalog="" columns="USER_ID"/>
+    </table>
+    <table name="USERS_ID" schema="NEWSHUB" catalog="" type="SEQUENCE"/>
+    <table name="USER_TYPES" schema="NEWSHUB" catalog="" type="TABLE">
+      <column name="ID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <column name="USER_TYPE_NAME" sqlType="VARCHAR2" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="SYS_C0010171" columns="ID"/>
+      <exported-key name="SYS_C0010174" table="USERS" schema="NEWSHUB" catalog="" columns="USER_TYPE_ID"/>
+    </table>
+    <table name="USER_TYPES_ID" schema="NEWSHUB" catalog="" type="SEQUENCE"/>
   </data-source>
 </component>
