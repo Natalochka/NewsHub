@@ -1,0 +1,16 @@
+# Maven
+target/
+
+#Jetbrains Idea
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Gradle
+.gradle/
+build/
+
+# backup files
+*.*~
+*.bak
