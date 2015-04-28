@@ -5,16 +5,21 @@
 
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
-        <property name="connection.url">jdbc:oracle:thin:@//localhost:1521/xe</property>
-        <property name="connection.user">newshub</property>
-        <property name="hibernate.dialeсt">org.hibernate.dialect.Oracle10gDialect </property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/newshub</property>
+        <property name="connection.user">root</property>
+        <property name="hibernate.dialeсt">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hbm2ddl.auto">update</property>
         <mapping class="com.newshub.core.domain.UsersEntity"/>
         <mapping class="com.newshub.core.domain.UserTypesEntity"/>
         <mapping class="com.newshub.core.domain.ArticlesEntity"/>
-        <mapping class="com.newshub.core.domain.CommentsEntity"/>
         <mapping class="com.newshub.core.domain.TagsEntity"/>
         <mapping class="com.newshub.core.domain.TagsArticlesEntity"/>
+        <mapping class="com.newshub.core.domain.Articles"/>
+        <mapping class="com.newshub.core.domain.ArticlesTags"/>
+        <mapping class="com.newshub.core.domain.MainArticles"/>
+        <mapping class="com.newshub.core.domain.Privileges"/>
+        <mapping class="com.newshub.core.domain.Tags"/>
+        <mapping class="com.newshub.core.domain.Users"/>
     </session-factory>
 </hibernate-configuration>
