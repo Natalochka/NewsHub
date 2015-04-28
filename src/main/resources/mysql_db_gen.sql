@@ -29,17 +29,24 @@ CREATE TABLE IF NOT EXISTS MainArticles (
 CREATE TABLE IF NOT EXISTS Privileges (
   id             INT PRIMARY KEY AUTO_INCREMENT,
   name           VARCHAR(25) NOT NULL UNIQUE,
-  create_article BOOLEAN     NOT NULL
-
-  /*read_all_articles    BOOLEAN       NOT NULL,
-  update_all_articles  BOOLEAN       NOT NULL,
-  delete_article      BOOLEAN       NOT NULL,
-  delete_all_articles  BOOLEAN       NOT NULL,
-  feature_article     BOOLEAN       NOT NULL,
-  create_user         BOOLEAN       NOT NULL,
-  read_user           BOOLEAN       NOT NULL,
-  update_user         BOOLEAN       NOT NULL,
-  delete_user        BOOLEAN       NOT NULL*/
+  addArticle BOOLEAN NOT NULL,
+  addArticleToMain BOOLEAN NOT NULL,
+  removeArticleFromMain BOOLEAN NOT NULL,
+  editArticle BOOLEAN NOT NULL,
+  publishArticle BOOLEAN NOT NULL,
+  archiveArticle BOOLEAN NOT NULL,
+  featureArticle BOOLEAN NOT NULL,
+  deleteArticle BOOLEAN NOT NULL,
+  getArticle BOOLEAN NOT NULL,
+  addTag BOOLEAN NOT NULL,
+  editTag BOOLEAN NOT NULL,
+  deleteTag BOOLEAN NOT NULL,
+  getTag BOOLEAN NOT NULL,
+  addUser BOOLEAN NOT NULL,
+  changeUserPrivileges BOOLEAN NOT NULL,
+  deleteUser BOOLEAN NOT NULL,
+  editUserInfo BOOLEAN NOT NULL,
+  getUser BOOLEAN NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Users (
