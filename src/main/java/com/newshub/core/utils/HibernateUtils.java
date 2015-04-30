@@ -3,6 +3,8 @@ package com.newshub.core.utils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Locale;
@@ -14,6 +16,7 @@ public class HibernateUtils {
     private static final SessionFactory sessionFactory;
     // private static final ServiceRegistry serviceRegistry;
     private static Configuration configuration;
+    private static StandardServiceRegistry serviceRegistry;
     private Session session;
     private Transaction transaction;
     
@@ -26,8 +29,9 @@ public class HibernateUtils {
     static {
         configuration = new Configuration();
         configuration.configure();
-
-        sessionFactory = configuration.buildSessionFactory();
+        Configuration configuration = new Configuration().configure();
+        serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+        sessionFactory = configuration.configure().buildSessionFactory(serviceRegistry);
     }
 
     public Session getSession() {
