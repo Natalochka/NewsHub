@@ -14,7 +14,11 @@ public class ArticlesDAO implements DAO<Integer, Articles>{
     }
 
     public void delete (Integer id){
-
+/*Articles article = get(id);
+        Session session = null;
+        session = new HibernateUtils().getSession();
+        session.delete(article);
+        session.getTransaction().commit();*/
     }
 
     public Articles get (Integer id){

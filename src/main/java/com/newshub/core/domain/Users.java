@@ -6,16 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by Natalie_2 on 4/29/2015.
+ * Created by Natalie_2 on 4/30/2015.
  */
 @Entity
-public class Users  implements HibernateEntity {
+public class Users implements HibernateEntity {
     private int id;
     private String login;
     private String password;
     private String email;
     private String firstName;
     private String lastName;
+    private int privilegeId;
 
     @Id
     @Column(name = "id")
@@ -77,6 +78,16 @@ public class Users  implements HibernateEntity {
         this.lastName = lastName;
     }
 
+    @Basic
+    @Column(name = "privilege_id")
+    public int getPrivilegeId() {
+        return privilegeId;
+    }
+
+    public void setPrivilegeId(int privilegeId) {
+        this.privilegeId = privilegeId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,6 +96,7 @@ public class Users  implements HibernateEntity {
         Users users = (Users) o;
 
         if (id != users.id) return false;
+        if (privilegeId != users.privilegeId) return false;
         if (login != null ? !login.equals(users.login) : users.login != null) return false;
         if (password != null ? !password.equals(users.password) : users.password != null) return false;
         if (email != null ? !email.equals(users.email) : users.email != null) return false;
@@ -102,6 +114,7 @@ public class Users  implements HibernateEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + privilegeId;
         return result;
     }
 }
