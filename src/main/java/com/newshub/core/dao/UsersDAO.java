@@ -11,7 +11,7 @@ public class UsersDAO implements DAO<Privileges, Users> {
 
     }
 
-    public void update(Privileges id, Users entity) {
+    public void update(Users entity) {
 
     }
 

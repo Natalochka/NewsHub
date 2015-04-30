@@ -1,21 +1,21 @@
 package com.newshub.core.dao;
 
-import com.newshub.core.domain.Articles;
+import com.newshub.core.domain.Tags;
 
 /**
  * Created by Natalie_2 on 4/28/2015.
  */
-public class TagsDAO implements DAO<Integer, Articles>{
-    public void create(Articles entity) {
+public class TagsDAO implements DAO<Integer, Tags>{
+    public void create(Tags entity) {
     }
 
-    public void update(Integer id, Articles entity) {
+    public void update(Tags entity) {
     }
 
     public void delete(Integer id) {
     }
 
-    public Articles get(Integer id) {
+    public Tags get(Integer id) {
         return null;
     }
 }

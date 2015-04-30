@@ -12,7 +12,7 @@ public class MainArticlesDAO implements DAO<Articles, MainArticles>{
 
     }
 
-    public void update(Articles article, MainArticles entity) {
+    public void update(MainArticles entity) {
 
     }
 

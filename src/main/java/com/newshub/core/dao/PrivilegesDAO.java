@@ -10,7 +10,7 @@ public class PrivilegesDAO implements DAO<Integer, Privileges>{
 
     }
 
-    public void update(Integer id, Privileges entity) {
+    public void update(Privileges entity) {
 
     }
 

@@ -10,9 +10,12 @@ public class ArticlesDAO implements DAO<Integer, Articles>{
 
     public void create (Articles entity) {}
 
-    public void update (Integer id, Articles entity){}
+    public void update (Articles entity){
+    }
 
-    public void delete (Integer id){}
+    public void delete (Integer id){
+
+    }
 
     public Articles get (Integer id){
         return null;
