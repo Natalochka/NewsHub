@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS Articles (
   title            VARCHAR(255) NOT NULL,
   content          TEXT,
   publication_date DATETIME     NOT NULL,
-  published        BOOLEAN         DEFAULT FALSE
+  published        BOOLEAN         DEFAULT FALSE,
+  archive          BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS ArticlesTags (
@@ -38,6 +39,7 @@ CREATE TABLE IF NOT EXISTS Privileges (
   featureArticle BOOLEAN NOT NULL,
   deleteArticle BOOLEAN NOT NULL,
   getArticle BOOLEAN NOT NULL,
+  getMainArticle BOOLEAN NOT NULL,
   addTag BOOLEAN NOT NULL,
   editTag BOOLEAN NOT NULL,
   deleteTag BOOLEAN NOT NULL,
@@ -52,7 +54,7 @@ CREATE TABLE IF NOT EXISTS Privileges (
 CREATE TABLE IF NOT EXISTS Users (
   id           INT PRIMARY KEY AUTO_INCREMENT,
   login        VARCHAR(50) NOT NULL UNIQUE,
-  password     VARCHAR(36) NOT NULL UNIQUE,
+  password     VARCHAR(36) NOT NULL,
   email        VARCHAR(50) NOT NULL,
   first_name   VARCHAR(25) NOT NULL,
   last_name    VARCHAR(25) NOT NULL,

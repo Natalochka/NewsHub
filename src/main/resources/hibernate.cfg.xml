@@ -10,13 +10,9 @@
         <property name="connection.user">root</property>
         <property name="hibernate.dialeсt">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="com.newshub.core.domain.UsersEntity"/>
-        <mapping class="com.newshub.core.domain.UserTypesEntity"/>
-        <mapping class="com.newshub.core.domain.ArticlesEntity"/>
-        <mapping class="com.newshub.core.domain.TagsEntity"/>
-        <mapping class="com.newshub.core.domain.TagsArticlesEntity"/>
         <mapping class="com.newshub.core.domain.Articles"/>
         <mapping class="com.newshub.core.domain.ArticlesTags"/>
+        <mapping class="com.newshub.core.domain.ArticlesTagsPK"/>
         <mapping class="com.newshub.core.domain.MainArticles"/>
         <mapping class="com.newshub.core.domain.Privileges"/>
         <mapping class="com.newshub.core.domain.Tags"/>
