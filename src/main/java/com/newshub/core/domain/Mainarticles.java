@@ -3,12 +3,12 @@ package com.newshub.core.domain;
 import javax.persistence.*;
 
 /**
- * Created by Natalie_2 on 4/27/2015.
+ * Created by Natalie_2 on 4/29/2015.
  */
 @Entity
 public class MainArticles implements HibernateEntity {
     private int mainArticleId;
-    private Byte featured;
+    private Boolean featured;
     private Articles articlesByArticleId;
 
     @Id
@@ -21,13 +21,11 @@ public class MainArticles implements HibernateEntity {
         this.mainArticleId = mainArticleId;
     }
 
-    @Basic
-    @Column(name = "featured")
-    public Byte getFeatured() {
+    public Boolean isFeatured() {
         return featured;
     }
 
-    public void setFeatured(Byte featured) {
+    public void setFeatured(Boolean featured) {
         this.featured = featured;
     }
 
@@ -39,16 +37,13 @@ public class MainArticles implements HibernateEntity {
         MainArticles that = (MainArticles) o;
 
         if (mainArticleId != that.mainArticleId) return false;
-        if (featured != null ? !featured.equals(that.featured) : that.featured != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = mainArticleId;
-        result = 31 * result + (featured != null ? featured.hashCode() : 0);
-        return result;
+        return mainArticleId;
     }
 
     @ManyToOne

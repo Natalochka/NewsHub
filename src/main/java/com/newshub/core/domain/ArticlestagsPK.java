@@ -5,9 +5,9 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by Natalie_2 on 4/27/2015.
+ * Created by Natalie_2 on 4/29/2015.
  */
-public class ArticlesTagsPK implements HibernateEntity, Serializable {
+public class ArticlesTagsPK implements Serializable, HibernateEntity {
     private int articleId;
     private int tagId;
 

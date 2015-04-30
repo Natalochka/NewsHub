@@ -1,19 +1,21 @@
 package com.newshub.core.domain;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created by Natalie_2 on 4/27/2015.
+ * Created by Natalie_2 on 4/29/2015.
  */
 @Entity
-public class Users implements HibernateEntity {
+public class Users  implements HibernateEntity {
     private int id;
     private String login;
     private String password;
     private String email;
     private String firstName;
     private String lastName;
-    private Privileges privilegesByPrivilegeId;
 
     @Id
     @Column(name = "id")
@@ -101,15 +103,5 @@ public class Users implements HibernateEntity {
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "privilege_id", referencedColumnName = "id", nullable = false)
-    public Privileges getPrivilegesByPrivilegeId() {
-        return privilegesByPrivilegeId;
-    }
-
-    public void setPrivilegesByPrivilegeId(Privileges privilegesByPrivilegeId) {
-        this.privilegesByPrivilegeId = privilegesByPrivilegeId;
     }
 }

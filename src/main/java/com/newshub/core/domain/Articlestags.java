@@ -3,7 +3,7 @@ package com.newshub.core.domain;
 import javax.persistence.*;
 
 /**
- * Created by Natalie_2 on 4/27/2015.
+ * Created by Natalie_2 on 4/29/2015.
  */
 @Entity
 @IdClass(ArticlesTagsPK.class)
@@ -53,7 +53,7 @@ public class ArticlesTags implements HibernateEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "article_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "article_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Articles getArticlesByArticleId() {
         return articlesByArticleId;
     }

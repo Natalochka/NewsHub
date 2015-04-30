@@ -4,18 +4,19 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
- * Created by Natalie_2 on 4/27/2015.
+ * Created by Natalie_2 on 4/30/2015.
  */
 @Entity
 public class Articles implements HibernateEntity {
     private int id;
     private String title;
     private String content;
-    private Timestamp publicationDate;
-    private Byte published;
+    private Date publicationDate;
+    private Boolean published;
+    private Boolean archive;
 
     @Id
     @Column(name = "id")
@@ -49,22 +50,28 @@ public class Articles implements HibernateEntity {
 
     @Basic
     @Column(name = "publication_date")
-    public Timestamp getPublicationDate() {
+    public Date getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Timestamp publicationDate) {
+    public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
     }
 
-    @Basic
-    @Column(name = "published")
-    public Byte getPublished() {
+    public Boolean isPublished() {
         return published;
     }
 
-    public void setPublished(Byte published) {
+    public void setPublished(Boolean published) {
         this.published = published;
+    }
+
+    public Boolean isArchive() {
+        return archive;
+    }
+
+    public void setArchive(Boolean archive) {
+        this.archive = archive;
     }
 
     @Override
@@ -79,7 +86,6 @@ public class Articles implements HibernateEntity {
         if (content != null ? !content.equals(articles.content) : articles.content != null) return false;
         if (publicationDate != null ? !publicationDate.equals(articles.publicationDate) : articles.publicationDate != null)
             return false;
-        if (published != null ? !published.equals(articles.published) : articles.published != null) return false;
 
         return true;
     }
@@ -90,7 +96,6 @@ public class Articles implements HibernateEntity {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (publicationDate != null ? publicationDate.hashCode() : 0);
-        result = 31 * result + (published != null ? published.hashCode() : 0);
         return result;
     }
 }

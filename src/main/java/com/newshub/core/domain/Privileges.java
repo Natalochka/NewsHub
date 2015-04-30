@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by Natalie_2 on 4/28/2015.
+ * Created by Natalie_2 on 4/29/2015.
  */
 @Entity
 public class Privileges implements HibernateEntity {
@@ -33,219 +33,219 @@ public class Privileges implements HibernateEntity {
         this.name = name;
     }
 
-    private byte addArticle;
+    private boolean addArticle;
 
     @Basic
     @javax.persistence.Column(name = "addArticle")
-    public byte getAddArticle() {
+    public boolean isAddArticle() {
         return addArticle;
     }
 
-    public void setAddArticle(byte addArticle) {
+    public void setAddArticle(boolean addArticle) {
         this.addArticle = addArticle;
     }
 
-    private byte addArticleToMain;
+    private boolean addArticleToMain;
 
     @Basic
     @javax.persistence.Column(name = "addArticleToMain")
-    public byte getAddArticleToMain() {
+    public boolean isAddArticleToMain() {
         return addArticleToMain;
     }
 
-    public void setAddArticleToMain(byte addArticleToMain) {
+    public void setAddArticleToMain(boolean addArticleToMain) {
         this.addArticleToMain = addArticleToMain;
     }
 
-    private byte removeArticleFromMain;
+    private boolean removeArticleFromMain;
 
     @Basic
     @javax.persistence.Column(name = "removeArticleFromMain")
-    public byte getRemoveArticleFromMain() {
+    public boolean isRemoveArticleFromMain() {
         return removeArticleFromMain;
     }
 
-    public void setRemoveArticleFromMain(byte removeArticleFromMain) {
+    public void setRemoveArticleFromMain(boolean removeArticleFromMain) {
         this.removeArticleFromMain = removeArticleFromMain;
     }
 
-    private byte editArticle;
+    private boolean editArticle;
 
     @Basic
     @javax.persistence.Column(name = "editArticle")
-    public byte getEditArticle() {
+    public boolean isEditArticle() {
         return editArticle;
     }
 
-    public void setEditArticle(byte editArticle) {
+    public void setEditArticle(boolean editArticle) {
         this.editArticle = editArticle;
     }
 
-    private byte publishArticle;
+    private boolean publishArticle;
 
     @Basic
     @javax.persistence.Column(name = "publishArticle")
-    public byte getPublishArticle() {
+    public boolean isPublishArticle() {
         return publishArticle;
     }
 
-    public void setPublishArticle(byte publishArticle) {
+    public void setPublishArticle(boolean publishArticle) {
         this.publishArticle = publishArticle;
     }
 
-    private byte archiveArticle;
+    private boolean archiveArticle;
 
     @Basic
     @javax.persistence.Column(name = "archiveArticle")
-    public byte getArchiveArticle() {
+    public boolean isArchiveArticle() {
         return archiveArticle;
     }
 
-    public void setArchiveArticle(byte archiveArticle) {
+    public void setArchiveArticle(boolean archiveArticle) {
         this.archiveArticle = archiveArticle;
     }
 
-    private byte featureArticle;
+    private boolean featureArticle;
 
     @Basic
     @javax.persistence.Column(name = "featureArticle")
-    public byte getFeatureArticle() {
+    public boolean isFeatureArticle() {
         return featureArticle;
     }
 
-    public void setFeatureArticle(byte featureArticle) {
+    public void setFeatureArticle(boolean featureArticle) {
         this.featureArticle = featureArticle;
     }
 
-    private byte deleteArticle;
+    private boolean deleteArticle;
 
     @Basic
     @javax.persistence.Column(name = "deleteArticle")
-    public byte getDeleteArticle() {
+    public boolean isDeleteArticle() {
         return deleteArticle;
     }
 
-    public void setDeleteArticle(byte deleteArticle) {
+    public void setDeleteArticle(boolean deleteArticle) {
         this.deleteArticle = deleteArticle;
     }
 
-    private byte getArticle;
+    private boolean getArticle;
 
     @Basic
     @javax.persistence.Column(name = "getArticle")
-    public byte getGetArticle() {
+    public boolean isGetArticle() {
         return getArticle;
     }
 
-    public void setGetArticle(byte getArticle) {
+    public void setGetArticle(boolean getArticle) {
         this.getArticle = getArticle;
     }
 
-    private byte addTag;
+    private boolean addTag;
 
     @Basic
     @javax.persistence.Column(name = "addTag")
-    public byte getAddTag() {
+    public boolean isAddTag() {
         return addTag;
     }
 
-    public void setAddTag(byte addTag) {
+    public void setAddTag(boolean addTag) {
         this.addTag = addTag;
     }
 
-    private byte editTag;
+    private boolean editTag;
 
     @Basic
     @javax.persistence.Column(name = "editTag")
-    public byte getEditTag() {
+    public boolean isEditTag() {
         return editTag;
     }
 
-    public void setEditTag(byte editTag) {
+    public void setEditTag(boolean editTag) {
         this.editTag = editTag;
     }
 
-    private byte deleteTag;
+    private boolean deleteTag;
 
     @Basic
     @javax.persistence.Column(name = "deleteTag")
-    public byte getDeleteTag() {
+    public boolean isDeleteTag() {
         return deleteTag;
     }
 
-    public void setDeleteTag(byte deleteTag) {
+    public void setDeleteTag(boolean deleteTag) {
         this.deleteTag = deleteTag;
     }
 
-    private byte getTag;
+    private boolean getTag;
 
     @Basic
     @javax.persistence.Column(name = "getTag")
-    public byte getGetTag() {
+    public boolean isGetTag() {
         return getTag;
     }
 
-    public void setGetTag(byte getTag) {
+    public void setGetTag(boolean getTag) {
         this.getTag = getTag;
     }
 
-    private byte addUser;
+    private boolean addUser;
 
     @Basic
     @javax.persistence.Column(name = "addUser")
-    public byte getAddUser() {
+    public boolean isAddUser() {
         return addUser;
     }
 
-    public void setAddUser(byte addUser) {
+    public void setAddUser(boolean addUser) {
         this.addUser = addUser;
     }
 
-    private byte changeUserPrivileges;
+    private boolean changeUserPrivileges;
 
     @Basic
     @javax.persistence.Column(name = "changeUserPrivileges")
-    public byte getChangeUserPrivileges() {
+    public boolean isChangeUserPrivileges() {
         return changeUserPrivileges;
     }
 
-    public void setChangeUserPrivileges(byte changeUserPrivileges) {
+    public void setChangeUserPrivileges(boolean changeUserPrivileges) {
         this.changeUserPrivileges = changeUserPrivileges;
     }
 
-    private byte deleteUser;
+    private boolean deleteUser;
 
     @Basic
     @javax.persistence.Column(name = "deleteUser")
-    public byte getDeleteUser() {
+    public boolean isDeleteUser() {
         return deleteUser;
     }
 
-    public void setDeleteUser(byte deleteUser) {
+    public void setDeleteUser(boolean deleteUser) {
         this.deleteUser = deleteUser;
     }
 
-    private byte editUserInfo;
+    private boolean editUserInfo;
 
     @Basic
     @javax.persistence.Column(name = "editUserInfo")
-    public byte getEditUserInfo() {
+    public boolean isEditUserInfo() {
         return editUserInfo;
     }
 
-    public void setEditUserInfo(byte editUserInfo) {
+    public void setEditUserInfo(boolean editUserInfo) {
         this.editUserInfo = editUserInfo;
     }
 
-    private byte getUser;
+    private boolean getUser;
 
     @Basic
     @javax.persistence.Column(name = "getUser")
-    public byte getGetUser() {
+    public boolean isGetUser() {
         return getUser;
     }
 
-    public void setGetUser(byte getUser) {
+    public void setGetUser(boolean getUser) {
         this.getUser = getUser;
     }
 
@@ -284,24 +284,24 @@ public class Privileges implements HibernateEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (int) addArticle;
-        result = 31 * result + (int) addArticleToMain;
-        result = 31 * result + (int) removeArticleFromMain;
-        result = 31 * result + (int) editArticle;
-        result = 31 * result + (int) publishArticle;
-        result = 31 * result + (int) archiveArticle;
-        result = 31 * result + (int) featureArticle;
-        result = 31 * result + (int) deleteArticle;
-        result = 31 * result + (int) getArticle;
-        result = 31 * result + (int) addTag;
-        result = 31 * result + (int) editTag;
-        result = 31 * result + (int) deleteTag;
-        result = 31 * result + (int) getTag;
-        result = 31 * result + (int) addUser;
-        result = 31 * result + (int) changeUserPrivileges;
-        result = 31 * result + (int) deleteUser;
-        result = 31 * result + (int) editUserInfo;
-        result = 31 * result + (int) getUser;
+        result = 31 * result + (addArticle ? 1 : 0);
+        result = 31 * result + (addArticleToMain ? 1 : 0);
+        result = 31 * result + (removeArticleFromMain ? 1 : 0);
+        result = 31 * result + (editArticle ? 1 : 0);
+        result = 31 * result + (publishArticle ? 1 : 0);
+        result = 31 * result + (archiveArticle ? 1 : 0);
+        result = 31 * result + (featureArticle ? 1 : 0);
+        result = 31 * result + (deleteArticle ? 1 : 0);
+        result = 31 * result + (getArticle ? 1 : 0);
+        result = 31 * result + (addTag ? 1 : 0);
+        result = 31 * result + (editTag ? 1 : 0);
+        result = 31 * result + (deleteTag ? 1 : 0);
+        result = 31 * result + (getTag ? 1 : 0);
+        result = 31 * result + (addUser ? 1 : 0);
+        result = 31 * result + (changeUserPrivileges ? 1 : 0);
+        result = 31 * result + (deleteUser ? 1 : 0);
+        result = 31 * result + (editUserInfo ? 1 : 0);
+        result = 31 * result + (getUser ? 1 : 0);
         return result;
     }
 }
