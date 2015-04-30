@@ -1,18 +1,18 @@
 package com.newshub.core.dao;
 
-import com.newshub.core.domain.Articles;
+import com.newshub.core.domain.ArticlesTags;
 import com.newshub.core.domain.ArticlesTagsPK;
 
 /**
  * Created by Natalie_2 on 4/30/2015.
  */
-public class ArticleTagsDAO implements DAO<ArticlesTagsPK, Articles> {
+public class ArticleTagsDAO implements DAO<ArticlesTagsPK, ArticlesTags> {
 
-    public void create(Articles entity) {
+    public void create(ArticlesTags entity) {
 
     }
 
-    public void update(Articles entity) {
+    public void update(ArticlesTags entity) {
 
     }
 
@@ -20,7 +20,7 @@ public class ArticleTagsDAO implements DAO<ArticlesTagsPK, Articles> {
 
     }
 
-    public Articles get(ArticlesTagsPK id) {
+    public ArticlesTags get(ArticlesTagsPK id) {
         return null;
     }
 }
