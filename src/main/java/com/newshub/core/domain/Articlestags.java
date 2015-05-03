@@ -3,7 +3,7 @@ package com.newshub.core.domain;
 import javax.persistence.*;
 
 /**
- * Created by Natalie_2 on 4/29/2015.
+ * Created by Natalie_2 on 5/3/2015.
  */
 @Entity
 @IdClass(ArticlesTagsPK.class)
@@ -11,6 +11,7 @@ public class ArticlesTags implements HibernateEntity {
     private int articleId;
     private int tagId;
     private Articles articlesByArticleId;
+    private Tags tagsByTagId;
 
     @Id
     @Column(name = "article_id")
@@ -53,12 +54,22 @@ public class ArticlesTags implements HibernateEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "article_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "article_id", referencedColumnName = "id", nullable = false)
     public Articles getArticlesByArticleId() {
         return articlesByArticleId;
     }
 
     public void setArticlesByArticleId(Articles articlesByArticleId) {
         this.articlesByArticleId = articlesByArticleId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "tag_id", referencedColumnName = "id", nullable = false)
+    public Tags getTagsByTagId() {
+        return tagsByTagId;
+    }
+
+    public void setTagsByTagId(Tags tagsByTagId) {
+        this.tagsByTagId = tagsByTagId;
     }
 }

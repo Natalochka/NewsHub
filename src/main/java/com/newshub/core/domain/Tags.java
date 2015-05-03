@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by Natalie_2 on 4/29/2015.
+ * Created by Natalie_2 on 5/3/2015.
  */
 @Entity
 public class Tags implements HibernateEntity {

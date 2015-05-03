@@ -4,19 +4,22 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
- * Created by Natalie_2 on 4/30/2015.
+ * Created by Natalie_2 on 5/3/2015.
  */
 @Entity
 public class Articles implements HibernateEntity {
     private int id;
     private String title;
     private String content;
-    private Date publicationDate;
-    private Boolean published;
-    private Boolean archive;
+    private Boolean edited;
+    private Boolean featured;
+    private Boolean approved;
+    private Boolean archived;
+    private Integer numberOnMain;
+    private Timestamp publicationDate;
 
     @Id
     @Column(name = "id")
@@ -49,29 +52,63 @@ public class Articles implements HibernateEntity {
     }
 
     @Basic
+    @Column(name = "edited")
+    public Boolean getEdited() {
+        return edited;
+    }
+
+    public void setEdited(Boolean edited) {
+        this.edited = edited;
+    }
+
+    @Basic
+    @Column(name = "featured")
+    public Boolean getFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(Boolean featured) {
+        this.featured = featured;
+    }
+
+    @Basic
+    @Column(name = "approved")
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
+    }
+
+    @Basic
+    @Column(name = "archived")
+    public Boolean getArchived() {
+        return archived;
+    }
+
+    public void setArchived(Boolean archived) {
+        this.archived = archived;
+    }
+
+    @Basic
+    @Column(name = "number_on_main")
+    public Integer getNumberOnMain() {
+        return numberOnMain;
+    }
+
+    public void setNumberOnMain(Integer numberOnMain) {
+        this.numberOnMain = numberOnMain;
+    }
+
+    @Basic
     @Column(name = "publication_date")
-    public Date getPublicationDate() {
+    public Timestamp getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(Timestamp publicationDate) {
         this.publicationDate = publicationDate;
-    }
-
-    public Boolean isPublished() {
-        return published;
-    }
-
-    public void setPublished(Boolean published) {
-        this.published = published;
-    }
-
-    public Boolean isArchive() {
-        return archive;
-    }
-
-    public void setArchive(Boolean archive) {
-        this.archive = archive;
     }
 
     @Override
@@ -84,6 +121,12 @@ public class Articles implements HibernateEntity {
         if (id != articles.id) return false;
         if (title != null ? !title.equals(articles.title) : articles.title != null) return false;
         if (content != null ? !content.equals(articles.content) : articles.content != null) return false;
+        if (edited != null ? !edited.equals(articles.edited) : articles.edited != null) return false;
+        if (featured != null ? !featured.equals(articles.featured) : articles.featured != null) return false;
+        if (approved != null ? !approved.equals(articles.approved) : articles.approved != null) return false;
+        if (archived != null ? !archived.equals(articles.archived) : articles.archived != null) return false;
+        if (numberOnMain != null ? !numberOnMain.equals(articles.numberOnMain) : articles.numberOnMain != null)
+            return false;
         if (publicationDate != null ? !publicationDate.equals(articles.publicationDate) : articles.publicationDate != null)
             return false;
 
@@ -95,6 +138,11 @@ public class Articles implements HibernateEntity {
         int result = id;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (edited != null ? edited.hashCode() : 0);
+        result = 31 * result + (featured != null ? featured.hashCode() : 0);
+        result = 31 * result + (approved != null ? approved.hashCode() : 0);
+        result = 31 * result + (archived != null ? archived.hashCode() : 0);
+        result = 31 * result + (numberOnMain != null ? numberOnMain.hashCode() : 0);
         result = 31 * result + (publicationDate != null ? publicationDate.hashCode() : 0);
         return result;
     }
