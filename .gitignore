@@ -1,16 +1,1 @@
-# Maven
-target/
-
-#Jetbrains Idea
-.idea/
-*.iml
-*.ipr
-*.iws
-
-# Gradle
-.gradle/
-build/
-
-# backup files
-*.*~
-*.bak
+# Created by .ignore support plugin (hsz.mobi)
