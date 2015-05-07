@@ -1,23 +1,26 @@
 package com.newshub.core.dao;
 
-import com.newshub.core.domain.Articles;
 import com.newshub.core.domain.ArticlesTags;
 import com.newshub.core.domain.ArticlesTagsPK;
-import com.newshub.core.utils.HibernateUtils;
 import org.hibernate.Session;
 
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Natalie_2 on 4/30/2015.
  */
-public class ArticleTagsDAO implements DAO<ArticlesTagsPK, ArticlesTags> {
-
+public class ArticlesTagsDAO implements DAO<ArticlesTagsPK, ArticlesTags> {
     private Session session;
+
+    public ArticlesTagsDAO(Session session) {
+        this.session = session;
+    }
 
     public void create(ArticlesTags entity) {
 
         try {
+
             session.beginTransaction();
             session.save(entity);
             session.getTransaction().commit();
@@ -42,11 +45,9 @@ public class ArticleTagsDAO implements DAO<ArticlesTagsPK, ArticlesTags> {
             ArticlesTags article = get(id);
             session.delete(article);
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
+        }  catch (Exception e) {
 
         }
-
     }
 
     public ArticlesTags get(ArticlesTagsPK id) {
@@ -58,5 +59,17 @@ public class ArticleTagsDAO implements DAO<ArticlesTagsPK, ArticlesTags> {
 
         }
         return articlesTags;
+    }
+
+    public List<ArticlesTags> getAll(){
+        return new ArrayList<ArticlesTags>(){
+            {
+                ArticlesTags articles = null;
+                try {
+                    addAll(session.createCriteria(ArticlesTags.class).list());
+                } catch (Exception e){
+                }
+            }
+        };
     }
 }

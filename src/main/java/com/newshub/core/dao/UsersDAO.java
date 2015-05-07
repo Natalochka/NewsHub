@@ -1,18 +1,21 @@
 package com.newshub.core.dao;
 
 import com.newshub.core.domain.Users;
-import com.newshub.core.utils.HibernateUtils;
 import org.hibernate.Session;
 
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * Created by Natalie_2 on 4/28/2015.
  */
 public class UsersDAO implements DAO<Integer, Users> {
-
     private Session session;
+
+    public UsersDAO(Session session) {
+        this.session = session;
+    }
 
     public void create(Users entity) {
         try {
@@ -56,5 +59,17 @@ public class UsersDAO implements DAO<Integer, Users> {
 
         }
         return users;
+    }
+
+    public List<Users> getAll()   {
+        return new ArrayList<Users>(){
+            {
+                Users articles = null;
+                try {
+                    addAll(session.createCriteria(Users.class).list());
+                } catch (Exception e) {   // ???
+                }
+            }
+        };
     }
 }

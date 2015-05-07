@@ -1,18 +1,21 @@
 package com.newshub.core.dao;
 
-import com.newshub.core.domain.Users;
 import com.newshub.core.domain.UsersArticles;
 import com.newshub.core.domain.UsersArticlesPK;
-import com.newshub.core.utils.HibernateUtils;
 import org.hibernate.Session;
 
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Natalie_2 on 5/3/2015.
  */
 public class UsersArticlesDAO implements DAO<UsersArticlesPK, UsersArticles> {
     private Session session;
+
+    public UsersArticlesDAO(Session session) {
+        this.session = session;
+    }
 
     public void create(UsersArticles entity) {
         try {
@@ -22,7 +25,6 @@ public class UsersArticlesDAO implements DAO<UsersArticlesPK, UsersArticles> {
         } catch (Exception e) {
 
         }
-
     }
 
     public void update(UsersArticles entity) {
@@ -34,7 +36,6 @@ public class UsersArticlesDAO implements DAO<UsersArticlesPK, UsersArticles> {
         catch (Exception e) {
 
         }
-
     }
 
     public void delete(UsersArticlesPK id) {
@@ -46,7 +47,6 @@ public class UsersArticlesDAO implements DAO<UsersArticlesPK, UsersArticles> {
         catch (Exception e) {
 
         }
-
     }
 
     public UsersArticles get(UsersArticlesPK id) {
@@ -60,4 +60,15 @@ public class UsersArticlesDAO implements DAO<UsersArticlesPK, UsersArticles> {
         return usersArticles;
     }
 
+    public List<UsersArticles> getAll() {
+        return new ArrayList<UsersArticles>() {
+            {
+                UsersArticles usersArticles = null;
+                try {
+                    addAll(session.createCriteria(UsersArticles.class).list());
+                } catch (Exception e) {
+                }
+            }
+        };
+    }
 }
