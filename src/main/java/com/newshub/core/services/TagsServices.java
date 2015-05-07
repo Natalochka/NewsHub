@@ -1,17 +1,18 @@
 package com.newshub.core.services;
 
-import com.newshub.core.dao.ArticleTagsDAO;
+import com.newshub.core.dao.ArticlesTagsDAO;
 import com.newshub.core.dao.TagsDAO;
 import com.newshub.core.domain.ArticlesTags;
 import com.newshub.core.domain.ArticlesTagsPK;
 import com.newshub.core.domain.Tags;
+import com.newshub.core.utils.HibernateUtils;
 
 /**
  * Created by Natalie on 25.04.2015.
  */
 public class TagsServices {
-    TagsDAO tagsDAO = new TagsDAO();
-    ArticleTagsDAO articleTagsDAO = new ArticleTagsDAO();
+    TagsDAO tagsDAO = new TagsDAO(new HibernateUtils().getSession());
+    ArticlesTagsDAO articleTagsDAO = new ArticlesTagsDAO(new HibernateUtils().getSession());
 
     public void addTag(Integer id, String name){
 Tags tag = new Tags();
@@ -20,17 +21,13 @@ Tags tag = new Tags();
         tagsDAO.create(tag);
     }
 
-    public void addTagToArticle(Integer tegId, Integer articleId) {
+    public void addTagToArticle(Integer tagId, Integer articleId) {
         ArticlesTags articlesTags = new ArticlesTags();
-        articlesTags.setArticleId(articleId);
-        articlesTags.setTagId(tegId);
         articleTagsDAO.create(articlesTags);
     }
 
     public void editTag(Integer tagId, Integer articleId, String tagName){
         ArticlesTagsPK articlesTagsPK = new ArticlesTagsPK();
-        articlesTagsPK.setTagId(tagId);
-        articlesTagsPK.setArticleId(articleId);
         Tags tags = new Tags();
         tags.setId(tagId);
         tags.setName(tagName);
@@ -39,8 +36,6 @@ Tags tag = new Tags();
 
     public void deleteTag(Integer tagId, Integer articleId){
         ArticlesTagsPK articlesTagsPK = new ArticlesTagsPK();
-        articlesTagsPK.setTagId(tagId);
-        articlesTagsPK.setArticleId(articleId);
         articleTagsDAO.delete(articlesTagsPK);
     }
 

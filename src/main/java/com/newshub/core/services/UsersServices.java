@@ -3,14 +3,17 @@ package com.newshub.core.services;
 import com.newshub.core.dao.PrivilegesDAO;
 import com.newshub.core.dao.UsersDAO;
 import com.newshub.core.domain.Users;
+import com.newshub.core.utils.HibernateUtils;
+
+import java.util.List;
 
 /**
  * Created by Natalie on 25.04.2015.
  */
 public class UsersServices {
 
-    UsersDAO usersDAO = new UsersDAO();
-    PrivilegesDAO privilegesDAO = new PrivilegesDAO();
+    UsersDAO usersDAO = new UsersDAO(new HibernateUtils().getSession());
+    PrivilegesDAO privilegesDAO = new PrivilegesDAO(new HibernateUtils().getSession());
 
     public void addUser(int privilegeId, int id, String login, String password, String email, String firstName, String lastName) {
         Users user = new Users();
@@ -47,6 +50,10 @@ public class UsersServices {
 
     public Users getUser(int id) {
         return usersDAO.get(id);
+    }
+
+    public List<Users> getAllUsers() {
+        return usersDAO.getAll();
     }
 
 }
