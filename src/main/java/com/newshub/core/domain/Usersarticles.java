@@ -1,37 +1,19 @@
 package com.newshub.core.domain;
 
-import javax.persistence.*;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import java.io.Serializable;
 
 /**
  * Created by Natalie_2 on 5/3/2015.
  */
+@Transactional
 @Entity
-@IdClass(UsersArticlesPK.class)
-public class UsersArticles implements HibernateEntity{
-    private int userId;
-    private int articleId;
-    private Users usersByUserId;
-    private Articles articlesByArticleId;
-
-    @Id
-    @Column(name = "user_id")
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    @Id
-    @Column(name = "article_id")
-    public int getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
-    }
+public class UsersArticles implements HibernateEntity, Serializable{
+@EmbeddedId
+private UsersArticlesPK usersArticlesPK;
 
     @Override
     public boolean equals(Object o) {
@@ -40,36 +22,20 @@ public class UsersArticles implements HibernateEntity{
 
         UsersArticles that = (UsersArticles) o;
 
-        if (userId != that.userId) return false;
-        if (articleId != that.articleId) return false;
+        return !(usersArticlesPK != null ? !usersArticlesPK.equals(that.usersArticlesPK) : that.usersArticlesPK != null);
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = userId;
-        result = 31 * result + articleId;
-        return result;
+        return usersArticlesPK != null ? usersArticlesPK.hashCode() : 0;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    public Users getUsersByUserId() {
-        return usersByUserId;
+    public UsersArticlesPK getUsersArticlesPK() {
+        return usersArticlesPK;
     }
 
-    public void setUsersByUserId(Users usersByUserId) {
-        this.usersByUserId = usersByUserId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "article_id", referencedColumnName = "id", nullable = false)
-    public Articles getArticlesByArticleId() {
-        return articlesByArticleId;
-    }
-
-    public void setArticlesByArticleId(Articles articlesByArticleId) {
-        this.articlesByArticleId = articlesByArticleId;
+    public void setUsersArticlesPK(UsersArticlesPK usersArticlesPK) {
+        this.usersArticlesPK = usersArticlesPK;
     }
 }

@@ -1,35 +1,22 @@
 package com.newshub.core.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 /**
  * Created by Natalie_2 on 5/3/2015.
  */
+@Embeddable
 public class ArticlesTagsPK implements Serializable, HibernateEntity {
-    private int articleId;
-    private int tagId;
+    @ManyToOne
+    @JoinColumn(name = "article_id", nullable = false)
+    private Articles articleId;
 
-    @Column(name = "article_id")
-    @Id
-    public int getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
-    }
-
-    @Column(name = "tag_id")
-    @Id
-    public int getTagId() {
-        return tagId;
-    }
-
-    public void setTagId(int tagId) {
-        this.tagId = tagId;
-    }
+    @ManyToOne
+    @JoinColumn(name="tag_id", nullable = false)
+    private Tags tagId;
 
     @Override
     public boolean equals(Object o) {
@@ -38,16 +25,31 @@ public class ArticlesTagsPK implements Serializable, HibernateEntity {
 
         ArticlesTagsPK that = (ArticlesTagsPK) o;
 
-        if (articleId != that.articleId) return false;
-        if (tagId != that.tagId) return false;
+        if (articleId != null ? !articleId.equals(that.articleId) : that.articleId != null) return false;
+        return !(tagId != null ? !tagId.equals(that.tagId) : that.tagId != null);
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = articleId;
-        result = 31 * result + tagId;
+        int result = articleId != null ? articleId.hashCode() : 0;
+        result = 31 * result + (tagId != null ? tagId.hashCode() : 0);
         return result;
+    }
+
+    public Articles getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Articles articleId) {
+        this.articleId = articleId;
+    }
+
+    public Tags getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(Tags tagId) {
+        this.tagId = tagId;
     }
 }
