@@ -14,7 +14,7 @@ public class Articles implements HibernateEntity {
     private int id;
     private String title;
     private String content;
-    private Boolean edited;
+    private Boolean checked;
     private Boolean featured;
     private Boolean approved;
     private Boolean archived;
@@ -52,13 +52,13 @@ public class Articles implements HibernateEntity {
     }
 
     @Basic
-    @Column(name = "edited")
-    public Boolean getEdited() {
-        return edited;
+    @Column(name = "checked")
+    public Boolean getChecked() {
+        return checked;
     }
 
-    public void setEdited(Boolean edited) {
-        this.edited = edited;
+    public void setChecked(Boolean edited) {
+        this.checked = checked;
     }
 
     @Basic
@@ -121,7 +121,7 @@ public class Articles implements HibernateEntity {
         if (id != articles.id) return false;
         if (title != null ? !title.equals(articles.title) : articles.title != null) return false;
         if (content != null ? !content.equals(articles.content) : articles.content != null) return false;
-        if (edited != null ? !edited.equals(articles.edited) : articles.edited != null) return false;
+        if (checked != null ? !checked.equals(articles.checked) : articles.checked != null) return false;
         if (featured != null ? !featured.equals(articles.featured) : articles.featured != null) return false;
         if (approved != null ? !approved.equals(articles.approved) : articles.approved != null) return false;
         if (archived != null ? !archived.equals(articles.archived) : articles.archived != null) return false;
@@ -138,7 +138,7 @@ public class Articles implements HibernateEntity {
         int result = id;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (edited != null ? edited.hashCode() : 0);
+        result = 31 * result + (checked != null ? checked.hashCode() : 0);
         result = 31 * result + (featured != null ? featured.hashCode() : 0);
         result = 31 * result + (approved != null ? approved.hashCode() : 0);
         result = 31 * result + (archived != null ? archived.hashCode() : 0);

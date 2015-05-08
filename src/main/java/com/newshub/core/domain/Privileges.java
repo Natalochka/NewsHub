@@ -81,6 +81,19 @@ public class Privileges implements HibernateEntity {
         this.editArticle = editArticle;
     }
 
+    private byte checkArticle;
+
+    @Basic
+    @javax.persistence.Column(name = "checkArticle")
+    public byte getCheckArticle() {
+        return checkArticle;
+    }
+
+    public void setCheckArticle(byte checkArticle) {
+        this.checkArticle = checkArticle;
+    }
+
+
     private byte publishArticle;
 
     @Basic
@@ -261,6 +274,7 @@ public class Privileges implements HibernateEntity {
         if (addArticleToMain != that.addArticleToMain) return false;
         if (removeArticleFromMain != that.removeArticleFromMain) return false;
         if (editArticle != that.editArticle) return false;
+        if (checkArticle != that.checkArticle) return false;
         if (publishArticle != that.publishArticle) return false;
         if (archiveArticle != that.archiveArticle) return false;
         if (featureArticle != that.featureArticle) return false;
@@ -288,6 +302,7 @@ public class Privileges implements HibernateEntity {
         result = 31 * result + (int) addArticleToMain;
         result = 31 * result + (int) removeArticleFromMain;
         result = 31 * result + (int) editArticle;
+        result = 31 * result + (int) checkArticle;
         result = 31 * result + (int) publishArticle;
         result = 31 * result + (int) archiveArticle;
         result = 31 * result + (int) featureArticle;
