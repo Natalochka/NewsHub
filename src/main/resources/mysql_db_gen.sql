@@ -2,15 +2,13 @@ CREATE TABLE IF NOT EXISTS Articles (
   id               INT PRIMARY KEY AUTO_INCREMENT,
   title            VARCHAR(255) NOT NULL,
   content          TEXT,
-  edited           BOOLEAN         DEFAULT FALSE,
+  checked          BOOLEAN         DEFAULT FALSE,
   featured         BOOLEAN         DEFAULT FALSE,
   approved         BOOLEAN         DEFAULT FALSE,
   archived         BOOLEAN         DEFAULT FALSE,
   number_on_main   INT UNIQUE,
   publication_date DATETIME     NOT NULL
 );
-
-ALTER TABLE Articles ADD CONSTRAINT EDIT_CONDITION CHECK (USERS.privilege_id = 1);
 
 CREATE TABLE IF NOT EXISTS Tags (
   id   INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,6 +30,7 @@ CREATE TABLE IF NOT EXISTS Privileges (
   addArticleToMain      BOOLEAN     NOT NULL,
   removeArticleFromMain BOOLEAN     NOT NULL,
   editArticle           BOOLEAN     NOT NULL,
+  checkArticle          BOOLEAN     NOT NULL,
   publishArticle        BOOLEAN     NOT NULL,
   archiveArticle        BOOLEAN     NOT NULL,
   featureArticle        BOOLEAN     NOT NULL,
@@ -66,4 +65,3 @@ CREATE TABLE IF NOT EXISTS UsersArticles (
   FOREIGN KEY (article_id) REFERENCES Articles (id),
   PRIMARY KEY (user_id, article_id)
 );
-

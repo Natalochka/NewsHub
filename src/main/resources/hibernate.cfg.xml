@@ -13,9 +13,10 @@
         <mapping class="com.newshub.core.domain.Articles"/>
         <mapping class="com.newshub.core.domain.ArticlesTags"/>
         <mapping class="com.newshub.core.domain.ArticlesTagsPK"/>
-        <mapping class="com.newshub.core.domain.MainArticles"/>
         <mapping class="com.newshub.core.domain.Privileges"/>
         <mapping class="com.newshub.core.domain.Tags"/>
         <mapping class="com.newshub.core.domain.Users"/>
+        <mapping class="com.newshub.core.domain.UsersArticles"/>
+        <mapping class="com.newshub.core.domain.UsersArticlesPK"/>
     </session-factory>
 </hibernate-configuration>
