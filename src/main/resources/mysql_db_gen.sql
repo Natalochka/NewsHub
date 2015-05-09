@@ -31,20 +31,26 @@ CREATE TABLE IF NOT EXISTS Privileges (
   removeArticleFromMain BOOLEAN     NOT NULL,
   editArticle           BOOLEAN     NOT NULL,
   checkArticle          BOOLEAN     NOT NULL,
-  publishArticle        BOOLEAN     NOT NULL,
+  approveArticle        BOOLEAN     NOT NULL,
   archiveArticle        BOOLEAN     NOT NULL,
   featureArticle        BOOLEAN     NOT NULL,
   deleteArticle         BOOLEAN     NOT NULL,
   getArticle            BOOLEAN     NOT NULL,
+  getAllArticles        BOOLEAN     NOT NULL,
+  getArticlesByTagId    BOOLEAN     NOT NULL,
   addTag                BOOLEAN     NOT NULL,
+  addTagToArticle       BOOLEAN     NOT NULL,
   editTag               BOOLEAN     NOT NULL,
   deleteTag             BOOLEAN     NOT NULL,
   getTag                BOOLEAN     NOT NULL,
+  getAllTags            BOOLEAN     NOT NULL,
+  getTagsByArticleId    BOOLEAN     NOT NULL,
   addUser               BOOLEAN     NOT NULL,
   changeUserPrivileges  BOOLEAN     NOT NULL,
   deleteUser            BOOLEAN     NOT NULL,
   editUserInfo          BOOLEAN     NOT NULL,
-  getUser               BOOLEAN     NOT NULL
+  getUser               BOOLEAN     NOT NULL,
+  getAllUsers           BOOLEAN     NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Users (
