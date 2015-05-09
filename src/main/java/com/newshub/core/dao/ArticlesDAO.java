@@ -18,7 +18,6 @@ public class ArticlesDAO implements DAO<Integer, Articles>{
     }
 
     public void create (Articles entity) {
-        Session session = null;
         try {
             session.beginTransaction();
             session.save(entity);
@@ -27,7 +26,6 @@ public class ArticlesDAO implements DAO<Integer, Articles>{
         }     }
 
     public void update (Articles entity){
-        Session session = null;
         try {
             session.beginTransaction();
             session.update(entity);
@@ -37,7 +35,6 @@ public class ArticlesDAO implements DAO<Integer, Articles>{
         }     }
 
     public void delete (Integer id){
-        Session session = null;
         try{
             Articles article = get(id);
             session.delete(article);
@@ -48,7 +45,6 @@ public class ArticlesDAO implements DAO<Integer, Articles>{
     }
 
     public Articles get (Integer id){
-        Session session = null;
         Articles articles = null;
         try{
             articles = (Articles) session.load(Articles.class, id);
@@ -61,8 +57,7 @@ public class ArticlesDAO implements DAO<Integer, Articles>{
     public List<Articles> getAll() {
         return new ArrayList<Articles>() {
             {
-                Articles articles = null;
-                try {;
+                try {
                     addAll(session.createCriteria(Articles.class).list());
                 } catch (Exception e) {
                 }
