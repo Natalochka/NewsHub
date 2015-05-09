@@ -27,15 +27,11 @@ public class Access {
         session = new HibernateUtils().getSession();
     }
 
-    public void grantPrivileges(int id) {
-
-    }
-
     public boolean connect(String login, String password) {
 
-        for (Users user : usersServices.getAllUsers()) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                this.user = user;
+        for (Users tempUser : usersServices.getAllUsers()) {
+            if (tempUser.getLogin().equals(login) && tempUser.getPassword().equals(password)) {
+                this.user = tempUser;
                 privilege = user.getPrivilegesByPrivilegeId();
             }
         }
