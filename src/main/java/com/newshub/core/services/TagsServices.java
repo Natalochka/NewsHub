@@ -1,47 +1,74 @@
 package com.newshub.core.services;
 
+import com.newshub.core.dao.ArticlesDAO;
 import com.newshub.core.dao.ArticlesTagsDAO;
 import com.newshub.core.dao.TagsDAO;
+import com.newshub.core.domain.Articles;
 import com.newshub.core.domain.ArticlesTags;
 import com.newshub.core.domain.ArticlesTagsPK;
 import com.newshub.core.domain.Tags;
-import com.newshub.core.utils.HibernateUtils;
+import org.hibernate.Session;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Natalie on 25.04.2015.
  */
 public class TagsServices {
-    TagsDAO tagsDAO = new TagsDAO(new HibernateUtils().getSession());
-    ArticlesTagsDAO articleTagsDAO = new ArticlesTagsDAO(new HibernateUtils().getSession());
+    private Session session;
+    private TagsDAO tagsDAO = new TagsDAO(session);
+    private ArticlesTagsDAO articlesTagsDAO = new ArticlesTagsDAO(session);
+    private ArticlesDAO articlesDAO = new ArticlesDAO(session);
 
-    public void addTag(Integer id, String name){
-Tags tag = new Tags();
+    public TagsServices(Session session) {
+        this.session = session;
+    }
+
+    public void addTag(int id, String name) {
+        Tags tag = new Tags();
         tag.setId(id);
         tag.setName(name);
         tagsDAO.create(tag);
     }
 
-    public void addTagToArticle(Integer tagId, Integer articleId) {
+    public void addTagToArticle(int tagId, int articleId) {
+        ArticlesTagsPK articlesTagsPK = new ArticlesTagsPK();
+        articlesTagsPK.setArticleId(articlesDAO.get(articleId));
+        articlesTagsPK.setTagId(tagsDAO.get(tagId));
         ArticlesTags articlesTags = new ArticlesTags();
-        articleTagsDAO.create(articlesTags);
+        articlesTags.setArticlesTagsPK(articlesTagsPK);
+        articlesTagsDAO.create(articlesTags);
     }
 
-    public void editTag(Integer tagId, Integer articleId, String tagName){
+    public void editTag(int tagId, String tagName) {
+        Tags tag = tagsDAO.get(tagId);
+        tag.setName(tagName);
+        tagsDAO.update(tag);
+    }
+
+    public void deleteTag(int tagId, int articleId) {
         ArticlesTagsPK articlesTagsPK = new ArticlesTagsPK();
-        Tags tags = new Tags();
-        tags.setId(tagId);
-        tags.setName(tagName);
-        tagsDAO.update(tags);
+        articlesTagsPK.setArticleId(articlesDAO.get(articleId));
+        articlesTagsPK.setTagId(tagsDAO.get(tagId));
+        articlesTagsDAO.delete(articlesTagsPK);
     }
 
-    public void deleteTag(Integer tagId, Integer articleId){
-        ArticlesTagsPK articlesTagsPK = new ArticlesTagsPK();
-        articleTagsDAO.delete(articlesTagsPK);
+    public Tags getTag(int id) {
+        return tagsDAO.get(id);
     }
 
-    public Tags getTag(int id){
-        Tags tags = tagsDAO.get(id);
-        return tags;
+    public List<Tags> getAllTags() {
+        return tagsDAO.getAll();
     }
 
+    public List<Articles> getArticlesByTagId(int tagId) {
+        List<Articles> tempList = new ArrayList();
+        for (ArticlesTags articlesTags : articlesTagsDAO.getAll()) {
+            if (articlesTags.getArticlesTagsPK().getTagId().getId() == tagId) {
+                tempList.add(articlesTags.getArticlesTagsPK().getArticleId());
+            }
+        }
+        return tempList;
+    }
 }

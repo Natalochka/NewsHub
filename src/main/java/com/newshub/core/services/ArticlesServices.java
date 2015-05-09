@@ -2,7 +2,6 @@ package com.newshub.core.services;
 
 import com.newshub.core.dao.ArticlesDAO;
 import com.newshub.core.domain.Articles;
-import com.newshub.core.utils.HibernateUtils;
 import org.hibernate.Session;
 
 import java.sql.Timestamp;
@@ -13,11 +12,11 @@ import java.util.List;
  * Created by Natalie on 25.04.2015.
  */
 public class ArticlesServices {
+    private Session session;
+    private ArticlesDAO articlesDAO = new ArticlesDAO(session);
 
-    private ArticlesDAO articlesDAO;
-
-    public ArticlesServices() {
-        articlesDAO = new ArticlesDAO(new HibernateUtils().getSession());
+    public ArticlesServices(Session session) {
+        this.session = session;
     }
 
     public void addArticle(int id, String title, String content) {
@@ -30,22 +29,21 @@ public class ArticlesServices {
     }
 
     public void editArticle(int id, String title, String content) {
-        Session session = new HibernateUtils().getSession();
-        articlesDAO = new ArticlesDAO(session);
-        Articles oldArticle = articlesDAO.get(id);
-        Articles article = new Articles();
-        article.setId(id);
+        Articles article = articlesDAO.get(id);
         article.setTitle(title);
         article.setContent(content);
-        article.setApproved(oldArticle.getApproved());
-        article.setPublicationDate(oldArticle.getPublicationDate());
         articlesDAO.update(article);
-        session.close();
+    }
+
+    public void checkArticle(int id, Boolean flag) {
+        Articles articleForCheck = articlesDAO.get(id);
+        articleForCheck.setChecked(flag);
+        articlesDAO.update(articleForCheck);
     }
 
     public void approveArticle(int id, Boolean flag) {
         Articles article = articlesDAO.get(id);
-        article.setApproved(true);
+        article.setApproved(flag);
         articlesDAO.update(article);
     }
 
@@ -56,21 +54,20 @@ public class ArticlesServices {
     }
 
     public void featureArticle(int id, Boolean flag) {
-        Articles article = new Articles();
+        Articles article = articlesDAO.get(id);
         article.setFeatured(flag);
         articlesDAO.update(article);
     }
 
-    public void deleteArticle(int id, Boolean flag) {
-        Articles article = articlesDAO.get(id);
+    public void deleteArticle(int id) {
         articlesDAO.delete(id);
     }
 
-    public Articles getArticle(int id){
+    public Articles getArticle(int id) {
         return articlesDAO.get(id);
     }
 
     public List<Articles> getAllArticles() {
-        return new ArticlesDAO(new HibernateUtils().getSession()).getAll();
+        return articlesDAO.getAll();
     }
 }

@@ -3,7 +3,7 @@ package com.newshub.core.services;
 import com.newshub.core.dao.PrivilegesDAO;
 import com.newshub.core.dao.UsersDAO;
 import com.newshub.core.domain.Users;
-import com.newshub.core.utils.HibernateUtils;
+import org.hibernate.Session;
 
 import java.util.List;
 
@@ -12,8 +12,13 @@ import java.util.List;
  */
 public class UsersServices {
 
-    UsersDAO usersDAO = new UsersDAO(new HibernateUtils().getSession());
-    PrivilegesDAO privilegesDAO = new PrivilegesDAO(new HibernateUtils().getSession());
+    private Session session;
+    private UsersDAO usersDAO = new UsersDAO(session);
+    private PrivilegesDAO privilegesDAO = new PrivilegesDAO(session);
+
+    public UsersServices (Session session) {
+        this.session = session;
+    }
 
     public void addUser(int privilegeId, int id, String login, String password, String email, String firstName, String lastName) {
         Users user = new Users();
@@ -23,13 +28,13 @@ public class UsersServices {
         user.setEmail(email);
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setPrivilegeId(privilegeId);
+        user.setPrivilegesByPrivilegeId(privilegesDAO.get(privilegeId));
         usersDAO.create(user);
     }
 
     public void changeUserPrivileges(int privilegesId, int id) {
         Users user = usersDAO.get(id);
-        user.setPrivilegeId(privilegesId);
+        user.setPrivilegesByPrivilegeId(privilegesDAO.get(privilegesId));
         usersDAO.update(user);
     }
 
@@ -39,7 +44,6 @@ public class UsersServices {
 
     public void editUserInfo(int id, String login, String password, String email, String firstName, String lastName) {
         Users user = usersDAO.get(id);
-        user.setId(id);
         user.setLogin(login);
         user.setPassword(password);
         user.setEmail(email);
