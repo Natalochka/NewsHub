@@ -13,10 +13,11 @@ import java.util.List;
  */
 public class ArticlesServices {
     private Session session;
-    private ArticlesDAO articlesDAO = new ArticlesDAO(session);
+    private ArticlesDAO articlesDAO;
 
     public ArticlesServices(Session session) {
         this.session = session;
+        articlesDAO = new ArticlesDAO(this.session);
     }
 
     public void addArticle(int id, String title, String content) {

@@ -13,11 +13,13 @@ import java.util.List;
 public class UsersServices {
 
     private Session session;
-    private UsersDAO usersDAO = new UsersDAO(session);
-    private PrivilegesDAO privilegesDAO = new PrivilegesDAO(session);
+    private UsersDAO usersDAO;
+    private PrivilegesDAO privilegesDAO;
 
-    public UsersServices (Session session) {
+    public UsersServices(Session session) {
         this.session = session;
+        usersDAO = new UsersDAO(session);
+        privilegesDAO = new PrivilegesDAO(session);
     }
 
     public void addUser(int privilegeId, int id, String login, String password, String email, String firstName, String lastName) {

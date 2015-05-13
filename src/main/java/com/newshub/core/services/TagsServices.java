@@ -17,12 +17,15 @@ import java.util.List;
  */
 public class TagsServices {
     private Session session;
-    private TagsDAO tagsDAO = new TagsDAO(session);
-    private ArticlesTagsDAO articlesTagsDAO = new ArticlesTagsDAO(session);
-    private ArticlesDAO articlesDAO = new ArticlesDAO(session);
+    private TagsDAO tagsDAO;
+    private ArticlesTagsDAO articlesTagsDAO;
+    private ArticlesDAO articlesDAO;
 
     public TagsServices(Session session) {
         this.session = session;
+        tagsDAO = new TagsDAO(session);
+        articlesTagsDAO = new ArticlesTagsDAO(session);
+        articlesDAO = new ArticlesDAO(session);
     }
 
     public void addTag(int id, String name) {
