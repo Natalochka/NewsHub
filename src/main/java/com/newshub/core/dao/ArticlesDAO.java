@@ -60,6 +60,7 @@ public class ArticlesDAO implements DAO<Integer, Articles>{
                 try {
                     addAll(session.createCriteria(Articles.class).list());
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         };
