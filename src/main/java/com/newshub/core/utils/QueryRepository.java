@@ -5,6 +5,5 @@ package com.newshub.core.utils;
  */
 public class QueryRepository {
     public static String addTags = "insert into tags(tag_name) values (?)";
-    
-    
+
 }

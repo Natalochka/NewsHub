@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Natalie on 24.04.2015.
  */
 public class DAOUtils {
-    String encryption (String loginInfo) {
+    String encryption(String loginInfo) {
         MD5State md5State = new MD5State();
         md5State.update(loginInfo.getBytes());
         Fingerprint hash = md5State.calculate();
@@ -19,11 +19,7 @@ public class DAOUtils {
         return encryptedString;
     }
 
-    String decryption (String encryptedLoginInfo){
-
-        return null;
-    }
-    List<Integer> search (String searchableText){
+    List<Integer> search(String searchableText) {
         return null;
     }
 }
