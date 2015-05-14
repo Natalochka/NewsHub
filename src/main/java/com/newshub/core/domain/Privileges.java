@@ -298,8 +298,36 @@ public class Privileges implements HibernateEntity {
     }
 
     public void setGetAllUsers(boolean getAllUsers) {
-        this.getAllUsers = getUser;
+        this.getAllUsers = getAllUsers;
     }
+
+
+
+
+    private boolean draftArticle;
+
+    @Basic
+    @javax.persistence.Column(name = "draftArticle")
+    public boolean getDraftArticle() {
+        return draftArticle;
+    }
+
+    public void setDraftArticle(boolean draftArticle) {
+        this.draftArticle = draftArticle;
+    }
+
+    private boolean rejectArticle;
+
+    @Basic
+    @javax.persistence.Column(name = "rejectArticle")
+    public boolean getRejectArticle() {
+        return rejectArticle;
+    }
+
+    public void setRejectArticle(boolean rejectArticle) {
+        this.rejectArticle = rejectArticle;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -317,15 +345,22 @@ public class Privileges implements HibernateEntity {
         if (featureArticle != that.featureArticle) return false;
         if (deleteArticle != that.deleteArticle) return false;
         if (getArticle != that.getArticle) return false;
+        if (getAllArticles != that.getAllArticles) return false;
         if (addTag != that.addTag) return false;
+        if (addTagToArticle != that.addTagToArticle) return false;
         if (editTag != that.editTag) return false;
         if (deleteTag != that.deleteTag) return false;
         if (getTag != that.getTag) return false;
+        if (getAllTags != that.getAllTags) return false;
+        if (getArticlesByTagId != that.getArticlesByTagId) return false;
         if (addUser != that.addUser) return false;
         if (changeUserPrivileges != that.changeUserPrivileges) return false;
         if (deleteUser != that.deleteUser) return false;
         if (editUserInfo != that.editUserInfo) return false;
         if (getUser != that.getUser) return false;
+        if (getAllUsers != that.getAllUsers) return false;
+        if (draftArticle != that.draftArticle) return false;
+        if (rejectArticle != that.rejectArticle) return false;
         return !(name != null ? !name.equals(that.name) : that.name != null);
 
     }
@@ -342,15 +377,22 @@ public class Privileges implements HibernateEntity {
         result = 31 * result + (featureArticle ? 1 : 0);
         result = 31 * result + (deleteArticle ? 1 : 0);
         result = 31 * result + (getArticle ? 1 : 0);
+        result = 31 * result + (getAllArticles ? 1 : 0);
         result = 31 * result + (addTag ? 1 : 0);
+        result = 31 * result + (addTagToArticle ? 1 : 0);
         result = 31 * result + (editTag ? 1 : 0);
         result = 31 * result + (deleteTag ? 1 : 0);
         result = 31 * result + (getTag ? 1 : 0);
+        result = 31 * result + (getAllTags ? 1 : 0);
+        result = 31 * result + (getArticlesByTagId ? 1 : 0);
         result = 31 * result + (addUser ? 1 : 0);
         result = 31 * result + (changeUserPrivileges ? 1 : 0);
         result = 31 * result + (deleteUser ? 1 : 0);
         result = 31 * result + (editUserInfo ? 1 : 0);
         result = 31 * result + (getUser ? 1 : 0);
+        result = 31 * result + (getAllUsers ? 1 : 0);
+        result = 31 * result + (draftArticle ? 1 : 0);
+        result = 31 * result + (rejectArticle ? 1 : 0);
         return result;
     }
 }
