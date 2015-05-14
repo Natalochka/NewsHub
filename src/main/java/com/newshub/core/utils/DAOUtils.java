@@ -1,5 +1,8 @@
 package com.newshub.core.utils;
 
+import org.logi.crypto.sign.Fingerprint;
+import org.logi.crypto.sign.MD5State;
+
 import java.util.List;
 
 /**
@@ -7,12 +10,20 @@ import java.util.List;
  */
 public class DAOUtils {
     String encryption (String loginInfo) {
-        return null;
-    };
+        MD5State md5State = new MD5State();
+        md5State.update(loginInfo.getBytes());
+        Fingerprint hash = md5State.calculate();
+        String encryptedString = hash.toString();
+        encryptedString = encryptedString.substring(
+                encryptedString.indexOf(",") + 1, encryptedString.length() - 1);
+        return encryptedString;
+    }
+
     String decryption (String encryptedLoginInfo){
+
         return null;
-    };
+    }
     List<Integer> search (String searchableText){
         return null;
-    };
+    }
 }
