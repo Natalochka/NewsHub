@@ -21,6 +21,7 @@ public class TagsServices {
     private ArticlesTagsDAO articlesTagsDAO;
     private ArticlesDAO articlesDAO;
 
+
     public TagsServices(Session session) {
         this.session = session;
         tagsDAO = new TagsDAO(session);

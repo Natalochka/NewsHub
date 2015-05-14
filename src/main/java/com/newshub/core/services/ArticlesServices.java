@@ -60,6 +60,18 @@ public class ArticlesServices {
         articlesDAO.update(article);
     }
 
+    public void draftArticle(int id, Boolean flag) {
+        Articles article = articlesDAO.get(id);
+        article.setDraft(flag);
+        articlesDAO.update(article);
+    }
+
+    public void rejectArticle(int id, Boolean flag) {
+        Articles article = articlesDAO.get(id);
+        article.setReject(flag);
+        articlesDAO.update(article);
+    }
+
     public void deleteArticle(int id) {
         articlesDAO.delete(id);
     }

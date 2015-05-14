@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class UsersServices {
 
+
     private Session session;
     private UsersDAO usersDAO;
     private PrivilegesDAO privilegesDAO;
