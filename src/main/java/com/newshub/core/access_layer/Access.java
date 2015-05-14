@@ -17,14 +17,20 @@ import java.util.List;
  */
 public class Access {
     private Session session;
-    private ArticlesServices articlesServices = new ArticlesServices(session);
-    private TagsServices tagsServices = new TagsServices(session);
-    private UsersServices usersServices = new UsersServices(session);
+    private ArticlesServices articlesServices;
+    private TagsServices tagsServices;
+    private UsersServices usersServices;
     private Users user;
     private Privileges privilege;
 
     public Access() {
         session = new HibernateUtils().getSession();
+        articlesServices = new ArticlesServices(session);
+        tagsServices = new TagsServices(session);
+        usersServices = new UsersServices(session);
+        privilege = new Privileges();
+        privilege.setGetAllArticles(true);
+        privilege.setGetAllTags(true);
     }
 
     public boolean connect(String login, String password) {
@@ -33,6 +39,7 @@ public class Access {
             if (tempUser.getLogin().equals(login) && tempUser.getPassword().equals(password)) {
                 this.user = tempUser;
                 privilege = user.getPrivilegesByPrivilegeId();
+                return true;
             }
         }
         return false;
@@ -92,6 +99,18 @@ public class Access {
             return articlesServices.getAllArticles();
         }
         return null;
+    }
+
+    public void draftArticle(int id, Boolean flag) {
+        if(privilege.getDraftArticle()) {
+            articlesServices.draftArticle(id, flag);
+        }
+    }
+
+    public void rejectArticle(int id, Boolean flag) {
+        if(privilege.getRejectArticle()) {
+            articlesServices.rejectArticle(id, flag);
+        }
     }
 
     public void addTag(int id, String name) {
