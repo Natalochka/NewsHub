@@ -24,7 +24,7 @@ public class MainController {
         return "main_page";
     }
 
-    @ModelAttribute("articlesList")
+    @ModelAttribute("articlesList") // возвращают на страницу аттрибут, из которого можно полкчать значения
     public List<Articles> getArticlesList() {
         return new Access().getAllArticles();
     }
@@ -35,3 +35,4 @@ public class MainController {
     }
 
 }
+
