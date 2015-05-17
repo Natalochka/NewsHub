@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS Articles (
   archived         BOOLEAN         DEFAULT FALSE,
   draft            BOOLEAN         DEFAULT FALSE,
   rejected         BOOLEAN         DEFAULT FALSE,
+  image            TEXT,
   number_on_main   INT UNIQUE,
   publication_date DATETIME     NOT NULL
 );
@@ -39,6 +40,7 @@ CREATE TABLE IF NOT EXISTS Privileges (
   deleteArticle         BOOLEAN     NOT NULL,
   draftArticle          BOOLEAN     NOT NULL,
   rejectArticle         BOOLEAN     NOT NULL,
+  setImage              BOOLEAN     NOT NULL,
   getArticle            BOOLEAN     NOT NULL,
   getAllArticles        BOOLEAN     NOT NULL,
   getArticlesByTagId    BOOLEAN     NOT NULL,
