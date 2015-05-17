@@ -14,6 +14,7 @@ public class Articles implements HibernateEntity {
     private int id;
     private String title;
     private String content;
+    private String image;
     private Boolean checked;
     private Boolean featured;
     private Boolean approved;
@@ -124,13 +125,23 @@ public class Articles implements HibernateEntity {
     }
 
     @Basic
-    @Column(name = "reject")
+    @Column(name = "rejected")
     public Boolean getReject() {
         return reject;
     }
 
     public void setReject(Boolean reject) {
         this.reject = reject;
+    }
+
+    @Basic
+    @Column(name = "image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -143,6 +154,7 @@ public class Articles implements HibernateEntity {
         if (id != articles.id) return false;
         if (title != null ? !title.equals(articles.title) : articles.title != null) return false;
         if (content != null ? !content.equals(articles.content) : articles.content != null) return false;
+        if (image != null ? !image.equals(articles.image) : articles.image != null) return false;
         if (checked != null ? !checked.equals(articles.checked) : articles.checked != null) return false;
         if (featured != null ? !featured.equals(articles.featured) : articles.featured != null) return false;
         if (approved != null ? !approved.equals(articles.approved) : articles.approved != null) return false;
@@ -160,6 +172,7 @@ public class Articles implements HibernateEntity {
         int result = id;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (checked != null ? checked.hashCode() : 0);
         result = 31 * result + (featured != null ? featured.hashCode() : 0);
         result = 31 * result + (approved != null ? approved.hashCode() : 0);

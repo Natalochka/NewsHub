@@ -329,6 +329,19 @@ public class Privileges implements HibernateEntity {
     }
 
 
+    private boolean setImage;
+
+    @Basic
+    @javax.persistence.Column(name = "setImage")
+    public boolean getImage() {
+        return setImage;
+    }
+
+    public void setImage(boolean setImage) {
+        this.setImage = setImage;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
