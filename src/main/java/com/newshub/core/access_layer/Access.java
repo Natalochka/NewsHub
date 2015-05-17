@@ -113,6 +113,12 @@ public class Access {
         }
     }
 
+    public void addImageToArticle(int id, String imageName) {
+        if(privilege.getRejectArticle()) {
+            articlesServices.addImageToArticle(id, imageName);
+        }
+    }
+
     public void addTag(int id, String name) {
         if (privilege.getAddTag()) {
             tagsServices.addTag(id, name);
