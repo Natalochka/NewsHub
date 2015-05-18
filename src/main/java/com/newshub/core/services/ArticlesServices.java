@@ -26,6 +26,7 @@ public class ArticlesServices {
         article.setTitle(title);
         article.setContent(content);
         article.setPublicationDate(new Timestamp(Calendar.getInstance().getTime().getTime()));
+        article.setDraft(true);
         articlesDAO.create(article);
     }
 
@@ -69,6 +70,12 @@ public class ArticlesServices {
     public void rejectArticle(int id, Boolean flag) {
         Articles article = articlesDAO.get(id);
         article.setReject(flag);
+        articlesDAO.update(article);
+    }
+
+    public void addImageToArticle(int id, String imageName) {
+        Articles article = articlesDAO.get(id);
+        article.setImage(imageName);
         articlesDAO.update(article);
     }
 

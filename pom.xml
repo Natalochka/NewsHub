@@ -51,17 +51,17 @@
             <version>5.1.35</version>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
-        </dependency>-->
+        </dependency>
 
-        <dependency>
+      <!--  <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
             <artifactId>javax.servlet.jsp.jstl-api</artifactId>
             <version>1.2.1</version>
-        </dependency>
+        </dependency>-->
         <!--        <dependency>
                     <groupId>javaee</groupId>
                     <artifactId>javaee-api</artifactId>
@@ -85,6 +85,13 @@
             <artifactId>mail</artifactId>
             <version>1.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.lesscss</groupId>
+            <artifactId>lesscss-maven-plugin</artifactId>
+            <version>1.7.0.1.1</version>
+        </dependency>
+
 
     </dependencies>
 
