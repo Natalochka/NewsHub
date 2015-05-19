@@ -119,6 +119,13 @@ public class Access {
         }
     }
 
+    public String getImage(int id) {
+        if(privilege.getImage()){
+            return articlesServices.getImage(id);
+        }
+        return "";
+    }
+
     public void addTag(int id, String name) {
         if (privilege.getAddTag()) {
             tagsServices.addTag(id, name);
