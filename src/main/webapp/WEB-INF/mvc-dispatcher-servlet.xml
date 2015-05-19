@@ -34,4 +34,26 @@
         <property name="templateEngine" ref="templateEngine" />
     </bean>
 
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="viewResolvers">
+            <list>
+                <!-- Used here for 'xml' and 'atom' views  -->
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+                    <property name="order" value="1"/>
+                </bean>
+                <!-- Used for Thymeleaf views  -->
+                <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+                    <property name="templateEngine" ref="templateEngine" />
+                    <property name="order" value="2"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id = "accessBean" class = "com.newshub.core.access_layer.Access" scope="session"/>
+
+    <mvc:annotation-driven />
+    <mvc:default-servlet-handler />
+    <mvc:resources mapping="/WEB-INF/pages/**" location="/WEB-INF/pages/" />
+
 </beans>
