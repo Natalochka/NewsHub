@@ -90,4 +90,8 @@ public class ArticlesServices {
     public List<Articles> getAllArticles() {
         return articlesDAO.getAll();
     }
+
+    public String getImage(int id) {
+        return articlesDAO.get(id).getImage();
+    }
 }
