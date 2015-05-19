@@ -33,6 +33,14 @@ public class Access {
         privilege.setGetAllTags(true);
     }
 
+    public Users getCurrentUser() {
+        return user;
+    }
+
+    public Privileges getCurrentPrivilege() {
+        return privilege;
+    }
+
     public boolean connect(String login, String password) {
 
         for (Users tempUser : usersServices.getAllUsers()) {
@@ -94,7 +102,7 @@ public class Access {
         return null;
     }
 
-    public List<Articles> getAllArticles(){
+    public List<Articles> getAllArticles() {
         if (privilege.getGetAllArticles()) {
             return articlesServices.getAllArticles();
         }
@@ -102,25 +110,25 @@ public class Access {
     }
 
     public void draftArticle(int id, Boolean flag) {
-        if(privilege.getDraftArticle()) {
+        if (privilege.getDraftArticle()) {
             articlesServices.draftArticle(id, flag);
         }
     }
 
     public void rejectArticle(int id, Boolean flag) {
-        if(privilege.getRejectArticle()) {
+        if (privilege.getRejectArticle()) {
             articlesServices.rejectArticle(id, flag);
         }
     }
 
     public void addImageToArticle(int id, String imageName) {
-        if(privilege.getRejectArticle()) {
+        if (privilege.getRejectArticle()) {
             articlesServices.addImageToArticle(id, imageName);
         }
     }
 
     public String getImage(int id) {
-        if(privilege.getImage()){
+        if (privilege.getImage()) {
             return articlesServices.getImage(id);
         }
         return "";
@@ -150,21 +158,21 @@ public class Access {
         }
     }
 
-    public Tags getTag(int id){
+    public Tags getTag(int id) {
         if (privilege.getGetTag()) {
             return tagsServices.getTag(id);
         }
         return null;
     }
 
-    public List<Tags> getAllTags(){
-        if(privilege.getGetAllTags()){
+    public List<Tags> getAllTags() {
+        if (privilege.getGetAllTags()) {
             return tagsServices.getAllTags();
         }
         return null;
     }
 
-    public List<Articles> getArticlesByTagId(int tagId){
+    public List<Articles> getArticlesByTagId(int tagId) {
         if (privilege.getGetArticlesByTagId()) {
             return tagsServices.getArticlesByTagId(tagId);
         }
