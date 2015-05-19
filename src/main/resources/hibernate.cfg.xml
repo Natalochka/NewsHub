@@ -20,3 +20,6 @@
       <mapping class="com.newshub.core.domain.UsersArticlesPK"/>
   </session-factory>
 </hibernate-configuration>
+
+
+
