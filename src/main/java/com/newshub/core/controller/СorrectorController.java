@@ -43,15 +43,17 @@ public class ÑorrectorController {
         new Access().addArticle(id, title, content);
     }
 
+
+    @ModelAttribute("draftsList")
     public List<Articles> getDrafts(){
-        List<Articles> Allarticles = new Access().getAllArticles();
-        List<Articles> Drafts = new ArrayList<Articles>();
-        for(Articles article: Allarticles ){
+        List<Articles> allarticles = new Access().getAllArticles();
+        List<Articles> drafts = new ArrayList<Articles>();
+        for(Articles article: allarticles ){
             if (article.getDraft() == true)
-                Drafts.add(article);
+                drafts.add(article);
 
         }
-        return Drafts;
+        return drafts;
     }
 
     @ModelAttribute("users")
@@ -62,6 +64,7 @@ public class ÑorrectorController {
     }
 
     @RequestMapping(value ="/set" ,method = RequestMethod.POST)
+    @ResponseBody
     public void setSetting(HttpServletRequest request){
         ApplicationContext context = new ClassPathXmlApplicationContext("mvc-dispatcher-servlet.xml");
         Access access = (Access)context.getBean("accessBean");
@@ -69,8 +72,8 @@ public class ÑorrectorController {
         String login = request.getParameter("login");
         String pass = request.getParameter("password");
         String email = request.getParameter("email");
-        String firstname = request.getParameter("first_name");
-        String lastname = request.getParameter("last_name");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
         access.editUserInfo(id, login, pass, email, firstname, lastname);
     }
 
