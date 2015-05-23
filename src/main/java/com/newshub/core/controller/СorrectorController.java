@@ -46,9 +46,9 @@ public class ÑorrectorController {
 
     @ModelAttribute("draftsList")
     public List<Articles> getDrafts(){
-        List<Articles> allarticles = new Access().getAllArticles();
+        List<Articles> allArticles = new Access().getAllArticles();
         List<Articles> drafts = new ArrayList<Articles>();
-        for(Articles article: allarticles ){
+        for(Articles article: allArticles ){
             if (article.getDraft() == true)
                 drafts.add(article);
 
@@ -72,8 +72,8 @@ public class ÑorrectorController {
         String login = request.getParameter("login");
         String pass = request.getParameter("password");
         String email = request.getParameter("email");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
+        String firstname = request.getParameter("firstName");
+        String lastname = request.getParameter("lastName");
         access.editUserInfo(id, login, pass, email, firstname, lastname);
     }
 
