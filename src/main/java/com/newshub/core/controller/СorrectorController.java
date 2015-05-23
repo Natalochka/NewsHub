@@ -72,9 +72,9 @@ public class ÑorrectorController {
         String login = request.getParameter("login");
         String pass = request.getParameter("password");
         String email = request.getParameter("email");
-        String firstname = request.getParameter("firstName");
-        String lastname = request.getParameter("lastName");
-        access.editUserInfo(id, login, pass, email, firstname, lastname);
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        access.editUserInfo(id, login, pass, email, firstName, lastName);
     }
 
 
