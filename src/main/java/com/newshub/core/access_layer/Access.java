@@ -1,9 +1,6 @@
 package com.newshub.core.access_layer;
 
-import com.newshub.core.domain.Articles;
-import com.newshub.core.domain.Privileges;
-import com.newshub.core.domain.Tags;
-import com.newshub.core.domain.Users;
+import com.newshub.core.domain.*;
 import com.newshub.core.services.ArticlesServices;
 import com.newshub.core.services.TagsServices;
 import com.newshub.core.services.UsersServices;
@@ -31,6 +28,8 @@ public class Access {
         privilege = new Privileges();
         privilege.setGetAllArticles(true);
         privilege.setGetAllTags(true);
+        privilege.setGetArticlesTags(true);
+        privilege.setGetTagsByArticleId(true);
     }
 
     public Users getCurrentUser() {
@@ -175,6 +174,20 @@ public class Access {
     public List<Articles> getArticlesByTagId(int tagId) {
         if (privilege.getGetArticlesByTagId()) {
             return tagsServices.getArticlesByTagId(tagId);
+        }
+        return null;
+    }
+
+    public List<ArticlesTags> getArticlesTags (){
+        if (privilege.getGetArticlesTags()) {
+            return articlesServices.getArticlesTags();
+        }
+        return null;
+    }
+
+    public List<Tags> getTagsByArticleId (int articleId){
+        if (privilege.getGetTagsByArticleId()) {
+            return tagsServices.getTagsByArticleId(articleId);
         }
         return null;
     }
