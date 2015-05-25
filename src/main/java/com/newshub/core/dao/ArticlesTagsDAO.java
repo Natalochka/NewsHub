@@ -64,10 +64,10 @@ public class ArticlesTagsDAO implements DAO<ArticlesTagsPK, ArticlesTags> {
     public List<ArticlesTags> getAll(){
         return new ArrayList<ArticlesTags>(){
             {
-                ArticlesTags articles = null;
                 try {
                     addAll(session.createCriteria(ArticlesTags.class).list());
                 } catch (Exception e){
+                    e.printStackTrace();
                 }
             }
         };
