@@ -164,10 +164,8 @@ public class Privileges implements HibernateEntity {
     }
 
     public void setAddTagToArticle(boolean addTagToArticle) {
-        this.addTagToArticle = addTag;
+        this.addTagToArticle = addTagToArticle;
     }
-
-
 
     private boolean editTag;
 
@@ -228,6 +226,33 @@ public class Privileges implements HibernateEntity {
     public void setGetArticlesByTagId(boolean getArticlesByTagId) {
         this.getArticlesByTagId = getArticlesByTagId;
     }
+
+
+    private boolean getTagsByArticleId;
+
+    @Basic
+    @javax.persistence.Column(name = "getTagsByArticleId")
+    public boolean getGetTagsByArticleId() {
+        return getTagsByArticleId;
+    }
+
+    public void setGetTagsByArticleId(boolean getTagsByArticleId) {
+        this.getTagsByArticleId = getTagsByArticleId;
+    }
+
+
+    private boolean getArticlesTags;
+
+    @Basic
+    @javax.persistence.Column(name = "getArticlesTags")
+    public boolean getGetArticlesTags() {
+        return getArticlesTags;
+    }
+
+    public void setGetArticlesTags(boolean getArticlesTags) {
+        this.getArticlesTags = getArticlesTags;
+    }
+
 
     private boolean addUser;
 
@@ -302,8 +327,6 @@ public class Privileges implements HibernateEntity {
     }
 
 
-
-
     private boolean draftArticle;
 
     @Basic
@@ -328,8 +351,8 @@ public class Privileges implements HibernateEntity {
         this.rejectArticle = rejectArticle;
     }
 
-
     private boolean setImage;
+
 
     @Basic
     @javax.persistence.Column(name = "setImage")
@@ -340,7 +363,6 @@ public class Privileges implements HibernateEntity {
     public void setImage(boolean setImage) {
         this.setImage = setImage;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -366,6 +388,8 @@ public class Privileges implements HibernateEntity {
         if (getTag != that.getTag) return false;
         if (getAllTags != that.getAllTags) return false;
         if (getArticlesByTagId != that.getArticlesByTagId) return false;
+        if (getTagsByArticleId != that.getTagsByArticleId) return false;
+        if (getArticlesTags != that.getArticlesTags) return false;
         if (addUser != that.addUser) return false;
         if (changeUserPrivileges != that.changeUserPrivileges) return false;
         if (deleteUser != that.deleteUser) return false;
@@ -374,6 +398,7 @@ public class Privileges implements HibernateEntity {
         if (getAllUsers != that.getAllUsers) return false;
         if (draftArticle != that.draftArticle) return false;
         if (rejectArticle != that.rejectArticle) return false;
+        if (setImage != that.setImage) return false;
         return !(name != null ? !name.equals(that.name) : that.name != null);
 
     }
@@ -398,6 +423,8 @@ public class Privileges implements HibernateEntity {
         result = 31 * result + (getTag ? 1 : 0);
         result = 31 * result + (getAllTags ? 1 : 0);
         result = 31 * result + (getArticlesByTagId ? 1 : 0);
+        result = 31 * result + (getTagsByArticleId ? 1 : 0);
+        result = 31 * result + (getArticlesTags ? 1 : 0);
         result = 31 * result + (addUser ? 1 : 0);
         result = 31 * result + (changeUserPrivileges ? 1 : 0);
         result = 31 * result + (deleteUser ? 1 : 0);
@@ -406,6 +433,9 @@ public class Privileges implements HibernateEntity {
         result = 31 * result + (getAllUsers ? 1 : 0);
         result = 31 * result + (draftArticle ? 1 : 0);
         result = 31 * result + (rejectArticle ? 1 : 0);
+        result = 31 * result + (setImage ? 1 : 0);
         return result;
     }
+
+
 }
