@@ -75,4 +75,15 @@ public class TagsServices {
         }
         return tempList;
     }
+
+    public List<Tags> getTagsByArticleId (int articleId){
+        List<Tags> tempList = new ArrayList();
+        for (ArticlesTags articlesTags : articlesTagsDAO.getAll()) {
+            if (articlesTags.getArticlesTagsPK().getArticleId().getId() == articleId) {
+                tempList.add(articlesTags.getArticlesTagsPK().getTagId());
+            }
+        }
+        return tempList;
+    }
+
 }

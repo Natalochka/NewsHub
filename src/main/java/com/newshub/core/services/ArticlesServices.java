@@ -1,7 +1,9 @@
 package com.newshub.core.services;
 
 import com.newshub.core.dao.ArticlesDAO;
+import com.newshub.core.dao.ArticlesTagsDAO;
 import com.newshub.core.domain.Articles;
+import com.newshub.core.domain.ArticlesTags;
 import org.hibernate.Session;
 
 import java.sql.Timestamp;
@@ -14,10 +16,12 @@ import java.util.List;
 public class ArticlesServices {
     private Session session;
     private ArticlesDAO articlesDAO;
+    private ArticlesTagsDAO articlesTagsDAO;
 
     public ArticlesServices(Session session) {
         this.session = session;
         articlesDAO = new ArticlesDAO(this.session);
+        articlesTagsDAO = new ArticlesTagsDAO(this.session);
     }
 
     public void addArticle(int id, String title, String content) {
@@ -77,6 +81,10 @@ public class ArticlesServices {
         Articles article = articlesDAO.get(id);
         article.setImage(imageName);
         articlesDAO.update(article);
+    }
+
+    public List<ArticlesTags> getArticlesTags (){
+        return articlesTagsDAO.getAll();
     }
 
     public void deleteArticle(int id) {
