@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS Privileges (
   getArticle            BOOLEAN     NOT NULL,
   getAllArticles        BOOLEAN     NOT NULL,
   getArticlesByTagId    BOOLEAN     NOT NULL,
+  getArticlesTags       BOOLEAN     NOT NULL,
   addTag                BOOLEAN     NOT NULL,
   addTagToArticle       BOOLEAN     NOT NULL,
   editTag               BOOLEAN     NOT NULL,
