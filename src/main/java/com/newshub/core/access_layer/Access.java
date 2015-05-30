@@ -30,6 +30,7 @@ public class Access {
         privilege.setGetAllTags(true);
         privilege.setGetArticlesTags(true);
         privilege.setGetTagsByArticleId(true);
+        privilege.setGetUserByArticleId(true);
     }
 
     public Users getCurrentUser() {
@@ -226,6 +227,13 @@ public class Access {
     public List<Users> getAllUsers() {
         if (privilege.getGetAllUsers()) {
             return usersServices.getAllUsers();
+        }
+        return null;
+    }
+
+    public Users getUserByArticleId (int articleId){
+        if (privilege.getGetUserByArticleId()) {
+            return usersServices.getUserByArticleId(articleId);
         }
         return null;
     }
