@@ -1,0 +1,616 @@
+INFO    2015-05-31 00:32:07,644 [http-nio-8087-exec-1] org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+INFO    2015-05-31 00:32:07,682 [http-nio-8087-exec-1] org.hibernate.Version  - HHH000412: Hibernate Core {4.3.7.Final}
+INFO    2015-05-31 00:32:07,691 [http-nio-8087-exec-1] org.hibernate.cfg.Environment  - HHH000206: hibernate.properties not found
+INFO    2015-05-31 00:32:07,698 [http-nio-8087-exec-1] org.hibernate.cfg.Environment  - HHH000021: Bytecode provider name : javassist
+INFO    2015-05-31 00:32:07,850 [http-nio-8087-exec-1] org.hibernate.cfg.Configuration  - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO    2015-05-31 00:32:07,850 [http-nio-8087-exec-1] org.hibernate.cfg.Configuration  - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO    2015-05-31 00:32:08,081 [http-nio-8087-exec-1] org.hibernate.cfg.Configuration  - HHH000041: Configured SessionFactory: null
+INFO    2015-05-31 00:32:08,636 [http-nio-8087-exec-1] org.hibernate.cfg.Configuration  - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO    2015-05-31 00:32:08,636 [http-nio-8087-exec-1] org.hibernate.cfg.Configuration  - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO    2015-05-31 00:32:08,641 [http-nio-8087-exec-1] org.hibernate.cfg.Configuration  - HHH000041: Configured SessionFactory: null
+WARN    2015-05-31 00:32:08,699 [http-nio-8087-exec-1] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO    2015-05-31 00:32:08,712 [http-nio-8087-exec-1] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://127.0.0.1:3306/newshub]
+INFO    2015-05-31 00:32:08,713 [http-nio-8087-exec-1] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000046: Connection properties: {user=root, password=****, characterEncoding=utf-8}
+INFO    2015-05-31 00:32:08,713 [http-nio-8087-exec-1] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000006: Autocommit mode: false
+INFO    2015-05-31 00:32:08,725 [http-nio-8087-exec-1] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+INFO    2015-05-31 00:32:09,306 [http-nio-8087-exec-1] org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+INFO    2015-05-31 00:32:10,446 [http-nio-8087-exec-1] org.hibernate.engine.transaction.internal.TransactionFactoryInitiator  - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO    2015-05-31 00:32:10,482 [http-nio-8087-exec-1] org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory  - HHH000397: Using ASTQueryTranslatorFactory
+INFO    2015-05-31 00:32:11,997 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.SchemaUpdate  - HHH000228: Running hbm2ddl schema update
+INFO    2015-05-31 00:32:11,998 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.SchemaUpdate  - HHH000102: Fetching database metadata
+INFO    2015-05-31 00:32:12,002 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.SchemaUpdate  - HHH000396: Updating schema
+INFO    2015-05-31 00:32:12,065 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000261: Table found: newshub.articles
+INFO    2015-05-31 00:32:12,065 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000037: Columns: [content, id, draft, approved, title, archived, rejected, image, featured, number_on_main, publication_date, checked]
+INFO    2015-05-31 00:32:12,065 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000108: Foreign keys: []
+INFO    2015-05-31 00:32:12,065 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000126: Indexes: [primary, number_on_main]
+INFO    2015-05-31 00:32:12,086 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000261: Table found: newshub.articlestags
+INFO    2015-05-31 00:32:12,086 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000037: Columns: [article_id, tag_id]
+INFO    2015-05-31 00:32:12,086 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000108: Foreign keys: [articlestags_ibfk_1, articlestags_ibfk_2]
+INFO    2015-05-31 00:32:12,086 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000126: Indexes: [primary, tag_id]
+INFO    2015-05-31 00:32:12,105 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000261: Table found: newshub.privileges
+INFO    2015-05-31 00:32:12,105 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000037: Columns: [edittag, getarticlesbytagid, getallarticles, addarticletomain, rejectarticle, deletearticle, id, addtagtoarticle, gettag, draftarticle, getuser, archivearticle, name, approvearticle, setimage, gettagsbyarticleid, changeuserprivileges, editarticle, featurearticle, getarticlestags, edituserinfo, deleteuser, adduser, addarticle, removearticlefrommain, getalltags, getallusers, addtag, checkarticle, getarticle, deletetag, getuserbyarticleid]
+INFO    2015-05-31 00:32:12,105 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000108: Foreign keys: []
+INFO    2015-05-31 00:32:12,105 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000126: Indexes: [primary, name]
+INFO    2015-05-31 00:32:12,121 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000261: Table found: newshub.tags
+INFO    2015-05-31 00:32:12,122 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000037: Columns: [id, name]
+INFO    2015-05-31 00:32:12,122 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000108: Foreign keys: []
+INFO    2015-05-31 00:32:12,122 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000126: Indexes: [primary, name]
+INFO    2015-05-31 00:32:12,136 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000261: Table found: newshub.users
+INFO    2015-05-31 00:32:12,136 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000037: Columns: [id, first_name, email, last_name, login, password, privilege_id]
+INFO    2015-05-31 00:32:12,136 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000108: Foreign keys: [users_ibfk_1]
+INFO    2015-05-31 00:32:12,136 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000126: Indexes: [primary, login, password, privilege_id]
+INFO    2015-05-31 00:32:12,150 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000261: Table found: newshub.usersarticles
+INFO    2015-05-31 00:32:12,150 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000037: Columns: [article_id, user_id]
+INFO    2015-05-31 00:32:12,150 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000108: Foreign keys: [usersarticles_ibfk_2, usersarticles_ibfk_1]
+INFO    2015-05-31 00:32:12,150 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.TableMetadata  - HHH000126: Indexes: [article_id, primary]
+INFO    2015-05-31 00:32:12,151 [http-nio-8087-exec-1] org.hibernate.tool.hbm2ddl.SchemaUpdate  - HHH000232: Schema update complete
+INFO    2015-05-31 00:32:12,553 [http-nio-8087-exec-1] com.newshub.core.services.ArticlesServices  - List of all articles got successfully in method getAllArticles() in class ArticlesServices
+INFO    2015-05-31 00:32:13,069 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesDAO  - List of all articles got successfully in method getAll() in class ArticlesDAO
+INFO    2015-05-31 00:32:13,070 [http-nio-8087-exec-1] com.newshub.core.controller.MainController  - ArticlesList got successfully in method getArticlesList() in class MainController
+INFO    2015-05-31 00:32:13,070 [http-nio-8087-exec-1] com.newshub.core.controller.MainController  - Articles info got successfully in method getArticlesInfo() in class MainController
+INFO    2015-05-31 00:32:13,071 [http-nio-8087-exec-1] com.newshub.core.services.ArticlesServices  - List of all articles got successfully in method getAllArticles() in class ArticlesServices
+INFO    2015-05-31 00:32:13,093 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesDAO  - List of all articles got successfully in method getAll() in class ArticlesDAO
+INFO    2015-05-31 00:32:13,154 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,154 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,167 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,168 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,172 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,172 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,175 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,175 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,177 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,177 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,179 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,179 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,182 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,183 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,187 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,187 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,194 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,194 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,199 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,199 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,201 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,201 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,202 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,202 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,203 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,204 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,208 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,209 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,213 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,213 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,217 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,217 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,222 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,222 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,225 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,226 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,227 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,227 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,228 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,228 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,232 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,233 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,237 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,237 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,240 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,241 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,244 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,244 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,247 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,247 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,248 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,248 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,249 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,249 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,250 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,250 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,251 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,251 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,252 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,252 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,254 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,255 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,258 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,259 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,262 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,263 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,267 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,267 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,270 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,271 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,274 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,274 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,277 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,277 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,279 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,279 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,282 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,282 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,283 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,283 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,285 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,285 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,286 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,286 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,288 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,288 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,293 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,294 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,294 [http-nio-8087-exec-1] com.newshub.core.controller.MainController  - AllArticlesInfoEntity got successfully in method getAllArticlesInfoEntity() in class MainController
+INFO    2015-05-31 00:32:13,294 [http-nio-8087-exec-1] com.newshub.core.controller.MainController  - List of tags got successfully in method getTagsList() in class MainController
+INFO    2015-05-31 00:32:13,294 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of all tags got successfully in method getAllTags() in class TagsServices
+INFO    2015-05-31 00:32:13,314 [http-nio-8087-exec-1] com.newshub.core.dao.TagsDAO  - List of all tags got successfully in method getAll() in class TagsDAO
+INFO    2015-05-31 00:32:13,367 [http-nio-8087-exec-1] com.newshub.core.services.ArticlesServices  - List of all articles got successfully in method getAllArticles() in class ArticlesServices
+INFO    2015-05-31 00:32:13,387 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesDAO  - List of all articles got successfully in method getAll() in class ArticlesDAO
+INFO    2015-05-31 00:32:13,398 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,399 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,406 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,406 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,413 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,414 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,419 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,419 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,424 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,424 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,428 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,428 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,431 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,431 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,434 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,434 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,435 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,435 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,436 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,436 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,437 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,438 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,440 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,440 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,443 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,443 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,446 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,446 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,451 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,451 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,454 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,455 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,458 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,459 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,464 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,464 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,469 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,469 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,471 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,472 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,478 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,478 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,483 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,483 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,486 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,486 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,490 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,490 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,495 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,495 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,500 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,500 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,502 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,502 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,503 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,504 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,507 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,507 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,511 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,512 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,518 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,518 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,522 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,522 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,528 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,528 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,533 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,533 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,534 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,534 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,535 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,535 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,536 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,536 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,542 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,542 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,546 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,547 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,551 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,551 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,556 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,556 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,559 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,560 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,561 [http-nio-8087-exec-1] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:13,561 [http-nio-8087-exec-1] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:13,562 [http-nio-8087-exec-1] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:13,562 [http-nio-8087-exec-1] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:13,562 [http-nio-8087-exec-1] com.newshub.core.controller.MainController  - AllArticlesInfoEntity got successfully in method getAllArticlesInfoEntity() in class MainController
+INFO    2015-05-31 00:32:13,562 [http-nio-8087-exec-1] com.newshub.core.controller.MainController  - Main page shown successfully in class MainController
+INFO    2015-05-31 00:32:14,937 [http-nio-8087-exec-2] com.newshub.core.services.ArticlesServices  - List of all articles got successfully in method getAllArticles() in class ArticlesServices
+INFO    2015-05-31 00:32:14,962 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesDAO  - List of all articles got successfully in method getAll() in class ArticlesDAO
+INFO    2015-05-31 00:32:14,963 [http-nio-8087-exec-2] com.newshub.core.controller.MainController  - ArticlesList got successfully in method getArticlesList() in class MainController
+INFO    2015-05-31 00:32:14,963 [http-nio-8087-exec-2] com.newshub.core.controller.MainController  - Articles info got successfully in method getArticlesInfo() in class MainController
+INFO    2015-05-31 00:32:14,964 [http-nio-8087-exec-2] com.newshub.core.services.ArticlesServices  - List of all articles got successfully in method getAllArticles() in class ArticlesServices
+INFO    2015-05-31 00:32:14,991 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesDAO  - List of all articles got successfully in method getAll() in class ArticlesDAO
+INFO    2015-05-31 00:32:14,997 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:14,997 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,015 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,015 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,018 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,019 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,021 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,022 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,023 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,023 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,024 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,024 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,025 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,025 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,026 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,026 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,029 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,029 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,031 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,031 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,034 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,034 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,037 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,037 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,039 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,039 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,042 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,042 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,043 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,043 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,044 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,044 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,045 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,045 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,046 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,046 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,048 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,048 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,050 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,051 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,053 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,054 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,056 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,056 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,060 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,060 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,063 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,064 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,066 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,066 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,067 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,067 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,068 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,068 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,070 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,071 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,074 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,074 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,077 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,077 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,080 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,080 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,082 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,083 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,086 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,086 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,088 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,088 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,089 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,089 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,090 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,090 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,091 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,091 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,092 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,092 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,094 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,095 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,097 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,097 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,099 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,100 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,102 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,102 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,104 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,104 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,106 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,107 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,107 [http-nio-8087-exec-2] com.newshub.core.controller.MainController  - AllArticlesInfoEntity got successfully in method getAllArticlesInfoEntity() in class MainController
+INFO    2015-05-31 00:32:15,107 [http-nio-8087-exec-2] com.newshub.core.controller.MainController  - List of tags got successfully in method getTagsList() in class MainController
+INFO    2015-05-31 00:32:15,107 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of all tags got successfully in method getAllTags() in class TagsServices
+INFO    2015-05-31 00:32:15,119 [http-nio-8087-exec-2] com.newshub.core.dao.TagsDAO  - List of all tags got successfully in method getAll() in class TagsDAO
+INFO    2015-05-31 00:32:15,120 [http-nio-8087-exec-2] com.newshub.core.services.ArticlesServices  - List of all articles got successfully in method getAllArticles() in class ArticlesServices
+INFO    2015-05-31 00:32:15,135 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesDAO  - List of all articles got successfully in method getAll() in class ArticlesDAO
+INFO    2015-05-31 00:32:15,142 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,142 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,150 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,150 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,154 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,154 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,159 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,159 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,163 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,163 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,168 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,168 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,172 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,172 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,175 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,176 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,178 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,178 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,179 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,179 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,180 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,181 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,184 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,184 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,187 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,187 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,190 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,190 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,194 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,194 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,196 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,197 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,200 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,200 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,202 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,202 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,203 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,203 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,204 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,204 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,205 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,205 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,208 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,209 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,216 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,216 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,221 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,221 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,226 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,227 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,231 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,231 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,236 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,236 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,239 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,240 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,241 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,242 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,245 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,246 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,251 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,251 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,254 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,255 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,259 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,259 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,263 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,263 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,266 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,266 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,268 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,268 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,270 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,270 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,271 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,271 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,272 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,272 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,272 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,272 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,273 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,273 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,274 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,274 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,277 [http-nio-8087-exec-2] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:15,277 [http-nio-8087-exec-2] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:15,279 [http-nio-8087-exec-2] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:15,280 [http-nio-8087-exec-2] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:15,280 [http-nio-8087-exec-2] com.newshub.core.controller.MainController  - AllArticlesInfoEntity got successfully in method getAllArticlesInfoEntity() in class MainController
+INFO    2015-05-31 00:32:15,280 [http-nio-8087-exec-2] com.newshub.core.controller.MainController  - Main page shown successfully in class MainController
+INFO    2015-05-31 00:32:18,238 [http-nio-8087-exec-3] com.newshub.core.services.ArticlesServices  - List of all articles got successfully in method getAllArticles() in class ArticlesServices
+INFO    2015-05-31 00:32:18,269 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesDAO  - List of all articles got successfully in method getAll() in class ArticlesDAO
+INFO    2015-05-31 00:32:18,270 [http-nio-8087-exec-3] com.newshub.core.controller.MainController  - ArticlesList got successfully in method getArticlesList() in class MainController
+INFO    2015-05-31 00:32:18,270 [http-nio-8087-exec-3] com.newshub.core.controller.MainController  - Articles info got successfully in method getArticlesInfo() in class MainController
+INFO    2015-05-31 00:32:18,270 [http-nio-8087-exec-3] com.newshub.core.services.ArticlesServices  - List of all articles got successfully in method getAllArticles() in class ArticlesServices
+INFO    2015-05-31 00:32:18,297 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesDAO  - List of all articles got successfully in method getAll() in class ArticlesDAO
+INFO    2015-05-31 00:32:18,307 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,307 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,317 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,317 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,321 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,321 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,325 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,325 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,329 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,329 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,334 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,334 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,337 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,337 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,339 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,339 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,341 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,341 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,343 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,343 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,345 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,345 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,350 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,350 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,353 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,353 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,355 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,356 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,358 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,396 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,398 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,398 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,400 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,400 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,403 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,403 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,405 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,406 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,407 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,407 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,409 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,409 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,411 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,411 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,414 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,415 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,418 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,418 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,420 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,420 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,421 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,421 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,424 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,438 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,440 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,440 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,441 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,441 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,443 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,443 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,445 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,445 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,447 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,447 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,453 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,453 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,455 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,455 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,457 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,457 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,459 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,460 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,463 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,463 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,465 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,465 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,469 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,479 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,481 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,481 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,483 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,483 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,485 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,485 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,490 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,490 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,493 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,493 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,493 [http-nio-8087-exec-3] com.newshub.core.controller.MainController  - AllArticlesInfoEntity got successfully in method getAllArticlesInfoEntity() in class MainController
+INFO    2015-05-31 00:32:18,493 [http-nio-8087-exec-3] com.newshub.core.controller.MainController  - List of tags got successfully in method getTagsList() in class MainController
+INFO    2015-05-31 00:32:18,494 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of all tags got successfully in method getAllTags() in class TagsServices
+INFO    2015-05-31 00:32:18,515 [http-nio-8087-exec-3] com.newshub.core.dao.TagsDAO  - List of all tags got successfully in method getAll() in class TagsDAO
+INFO    2015-05-31 00:32:18,516 [http-nio-8087-exec-3] com.newshub.core.services.ArticlesServices  - List of all articles got successfully in method getAllArticles() in class ArticlesServices
+INFO    2015-05-31 00:32:18,542 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesDAO  - List of all articles got successfully in method getAll() in class ArticlesDAO
+INFO    2015-05-31 00:32:18,548 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,548 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,559 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,559 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,562 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,562 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,566 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,566 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,568 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,568 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,570 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,570 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,572 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,572 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,575 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,576 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,579 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,580 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,583 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,583 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,589 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,589 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,593 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,593 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,599 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,600 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,605 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,605 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,610 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,610 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,614 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,614 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,616 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,616 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,618 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,618 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,620 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,620 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,624 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,624 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,628 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,628 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,632 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,632 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,636 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,636 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,640 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,640 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,644 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,644 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,645 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,645 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,647 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,647 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,648 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,648 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,650 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,650 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,653 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,654 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,657 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,658 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,660 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,660 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,664 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,664 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,666 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,667 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,671 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,671 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,674 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,674 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,677 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,677 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,678 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,678 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,680 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,680 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,681 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,681 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,683 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,683 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,686 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,686 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,691 [http-nio-8087-exec-3] com.newshub.core.dao.ArticlesTagsDAO  - List of all ArticlesTags entities got successfully in method getAll() in class ArticlesTagsDAO
+INFO    2015-05-31 00:32:18,691 [http-nio-8087-exec-3] com.newshub.core.services.TagsServices  - List of tags got successfully in method getTagsByArticleId() in class TagsServices
+INFO    2015-05-31 00:32:18,697 [http-nio-8087-exec-3] com.newshub.core.dao.UsersArticlesDAO  - List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO
+INFO    2015-05-31 00:32:18,697 [http-nio-8087-exec-3] com.newshub.core.services.UsersServices  - User got successfully in method getUserByArticleId() in class UsersServices
+INFO    2015-05-31 00:32:18,697 [http-nio-8087-exec-3] com.newshub.core.controller.MainController  - AllArticlesInfoEntity got successfully in method getAllArticlesInfoEntity() in class MainController
+INFO    2015-05-31 00:32:18,698 [http-nio-8087-exec-3] com.newshub.core.controller.MainController  - Main page shown successfully in class MainController
