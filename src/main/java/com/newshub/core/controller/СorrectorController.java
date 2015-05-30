@@ -26,14 +26,6 @@ import java.util.ArrayList;
 @RequestMapping(value = "/corrector")
 public class ÑorrectorController {
 
-    //private Articles articles;
-
-    @ModelAttribute("articlesList")
-    //@ResponseBody
-    public List<Articles> getAllArticles(){
-        return  new Access().getAllArticles();
-    }
-
     @RequestMapping(value ="/add" ,method = RequestMethod.POST)
     @ResponseBody
     public void setArticle(HttpServletRequest httpServletRequest){
@@ -43,6 +35,29 @@ public class ÑorrectorController {
         new Access().addArticle(id, title, content);
     }
 
+    @ModelAttribute("checkedArticlesList")
+    public List<Articles> getCheckedArticles(){
+        List<Articles> allArticles = new Access().getAllArticles();
+        List<Articles> checkedArticles = new ArrayList<Articles>();
+        for(Articles article: allArticles ){
+            if (article.getChecked() == true)
+                checkedArticles.add(article);
+
+        }
+        return checkedArticles;
+    }
+
+    @ModelAttribute("uncheckedArticlesList")
+    public List<Articles> getUnCheckedArticles(){
+        List<Articles> allArticles = new Access().getAllArticles();
+        List<Articles> uncheckedArticles = new ArrayList<Articles>();
+        for(Articles article: allArticles ){
+            if (article.getChecked() == false)
+                uncheckedArticles.add(article);
+
+        }
+        return uncheckedArticles;
+    }
 
     @ModelAttribute("draftsList")
     public List<Articles> getDrafts(){
