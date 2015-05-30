@@ -364,6 +364,18 @@ public class Privileges implements HibernateEntity {
         this.setImage = setImage;
     }
 
+    private boolean getUserByArticleId;
+
+    @Basic
+    @javax.persistence.Column(name = "getUserByArticleId")
+    public boolean getGetUserByArticleId() {
+        return getUserByArticleId;
+    }
+
+    public void setGetUserByArticleId(boolean getUserByArticleId) {
+        this.getUserByArticleId = getUserByArticleId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -399,6 +411,7 @@ public class Privileges implements HibernateEntity {
         if (draftArticle != that.draftArticle) return false;
         if (rejectArticle != that.rejectArticle) return false;
         if (setImage != that.setImage) return false;
+        if (getUserByArticleId != that.getUserByArticleId) return false;
         return !(name != null ? !name.equals(that.name) : that.name != null);
 
     }
@@ -434,8 +447,7 @@ public class Privileges implements HibernateEntity {
         result = 31 * result + (draftArticle ? 1 : 0);
         result = 31 * result + (rejectArticle ? 1 : 0);
         result = 31 * result + (setImage ? 1 : 0);
+        result = 31 * result + (getUserByArticleId ? 1 : 0);
         return result;
     }
-
-
 }
