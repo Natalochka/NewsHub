@@ -26,12 +26,6 @@ public class CorrectorController {
 
     private Logger logger = Logger.getLogger(CorrectorController.class);
 
-    @ModelAttribute("articlesList")
-    public List<Articles> getAllArticles(){
-        logger.info("List of all articles got successfully in method getAllArticles() in class CorrectorController");
-        return  new Access().getAllArticles();
-    }
-
     @RequestMapping(value ="/add", method = RequestMethod.POST)
     @ResponseBody
     public void setArticle(HttpServletRequest httpServletRequest){
@@ -40,6 +34,32 @@ public class CorrectorController {
         String content = httpServletRequest.getParameter("content");
         new Access().addArticle(id, title, content);
         logger.info("Article set successfully in method setArticle() in class CorrectorController");
+    }
+
+    @ModelAttribute("checkedArticlesList")
+    public List<Articles> getCheckedArticles(){
+        List<Articles> allArticles = new Access().getAllArticles();
+        List<Articles> checkedArticles = new ArrayList<Articles>();
+        for(Articles article: allArticles ){
+            if (article.getChecked() == true)
+                checkedArticles.add(article);
+
+        }
+        logger.info("List of checked articles got successfully in method getCheckedArticles() in class CorrectorController");
+        return checkedArticles;
+    }
+
+    @ModelAttribute("uncheckedArticlesList")
+    public List<Articles> getUncheckedArticles(){
+        List<Articles> allArticles = new Access().getAllArticles();
+        List<Articles> uncheckedArticles = new ArrayList<Articles>();
+        for(Articles article: allArticles ){
+            if (article.getChecked() == false)
+                uncheckedArticles.add(article);
+
+        }
+        logger.info("List of unchecked articles got successfully in method getUncheckedArticles() in class CorrectorController");
+        return uncheckedArticles;
     }
 
     @ModelAttribute("draftsList")
