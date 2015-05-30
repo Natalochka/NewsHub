@@ -43,7 +43,6 @@ public class CorrectorController {
         for(Articles article: allArticles ){
             if (article.getChecked() == true)
                 checkedArticles.add(article);
-
         }
         logger.info("List of checked articles got successfully in method getCheckedArticles() in class CorrectorController");
         return checkedArticles;
