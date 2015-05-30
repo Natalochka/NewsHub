@@ -1,17 +1,19 @@
 package com.newshub.core.dao;
 
 import com.newshub.core.domain.Users;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Created by Natalie_2 on 4/28/2015.
  */
 public class UsersDAO implements DAO<Integer, Users> {
     private Session session;
+
+    private Logger logger = Logger.getLogger(UsersDAO.class);
 
     public UsersDAO(Session session) {
         this.session = session;
@@ -22,8 +24,9 @@ public class UsersDAO implements DAO<Integer, Users> {
             session.beginTransaction();
             session.save(entity);
             session.getTransaction().commit();
+            logger.info("User created successfully in method create() in class UsersDAO");
         } catch (Exception e) {
-
+            logger.error("Error occurred in method create() in class UsersDAO\n" + e);
         }
     }
 
@@ -32,9 +35,9 @@ public class UsersDAO implements DAO<Integer, Users> {
             session.beginTransaction();
             session.update(entity);
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
-
+            logger.info("User updated successfully in method update() in class UsersDAO");
+        } catch (Exception e) {
+            logger.error("Error occurred in method update() in class UsersDAO\n" + e);
         }
     }
 
@@ -43,9 +46,9 @@ public class UsersDAO implements DAO<Integer, Users> {
             Users users = get(id);
             session.delete(users);
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
-
+            logger.info("User deleted successfully in method delete() in class UsersDAO");
+        } catch (Exception e) {
+            logger.error("Error occurred in method delete() in class UsersDAO\n" + e);
         }
 
     }
@@ -54,9 +57,9 @@ public class UsersDAO implements DAO<Integer, Users> {
         Users users = null;
         try{
             users = (Users) session.load(Users.class, id);
-        }
-        catch (Exception e) {
-
+            logger.info("User got successfully in method get() in class UsersDAO");
+        } catch (Exception e) {
+            logger.error("Error occurred in method get() in class UsersDAO\n" + e);
         }
         return users;
     }
@@ -64,10 +67,11 @@ public class UsersDAO implements DAO<Integer, Users> {
     public List<Users> getAll()   {
         return new ArrayList<Users>(){
             {
-                Users articles = null;
                 try {
                     addAll(session.createCriteria(Users.class).list());
-                } catch (Exception e) {   // ???
+                    logger.info("List of all users got successfully in method getAll() in class UsersDAO");
+                } catch (Exception e) {
+                    logger.error("Error occurred in method getAll() in class UsersDAO\n" + e);
                 }
             }
         };

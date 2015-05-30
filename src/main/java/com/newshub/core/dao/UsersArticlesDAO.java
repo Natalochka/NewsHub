@@ -2,6 +2,7 @@ package com.newshub.core.dao;
 
 import com.newshub.core.domain.UsersArticles;
 import com.newshub.core.domain.UsersArticlesPK;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import java.util.List;
 public class UsersArticlesDAO implements DAO<UsersArticlesPK, UsersArticles> {
     private Session session;
 
+    private Logger logger = Logger.getLogger(UsersArticlesDAO.class);
+
     public UsersArticlesDAO(Session session) {
         this.session = session;
     }
@@ -22,8 +25,9 @@ public class UsersArticlesDAO implements DAO<UsersArticlesPK, UsersArticles> {
             session.beginTransaction();
             session.save(entity);
             session.getTransaction().commit();
+            logger.info("UsersArticles entity created successfully in method create() in class UsersArticlesDAO");
         } catch (Exception e) {
-
+            logger.error("Error occurred in method create() in class UsersArticlesDAO\n" + e);
         }
     }
 
@@ -32,30 +36,30 @@ public class UsersArticlesDAO implements DAO<UsersArticlesPK, UsersArticles> {
             session.beginTransaction();
             session.update(entity);
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
-
+            logger.info("UsersArticles entity updated successfully in method update() in class UsersArticlesDAO");
+        } catch (Exception e) {
+            logger.error("Error occurred in method update() in class UsersArticlesDAO\n" + e);
         }
     }
 
     public void delete(UsersArticlesPK id) {
-        try{
+        try {
             UsersArticles usersArticles = get(id);
             session.delete(usersArticles);
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
-
+            logger.info("UsersArticles entity deleted successfully in method delete() in class UsersArticlesDAO");
+        } catch (Exception e) {
+            logger.error("Error occurred in method delete() in class UsersArticlesDAO\n" + e);
         }
     }
 
     public UsersArticles get(UsersArticlesPK id) {
         UsersArticles usersArticles = null;
-        try{
+        try {
             usersArticles = (UsersArticles) session.load(UsersArticles.class, id);
-        }
-        catch (Exception e) {
-
+            logger.info("UsersArticles entity got successfully in method get() in class UsersArticlesDAO");
+        } catch (Exception e) {
+            logger.error("Error occurred in method get() in class UsersArticlesDAO\n" + e);
         }
         return usersArticles;
     }
@@ -63,10 +67,11 @@ public class UsersArticlesDAO implements DAO<UsersArticlesPK, UsersArticles> {
     public List<UsersArticles> getAll() {
         return new ArrayList<UsersArticles>() {
             {
-                UsersArticles usersArticles = null;
                 try {
                     addAll(session.createCriteria(UsersArticles.class).list());
+                    logger.info("List of UsersArticles entities got successfully in method getAll() in class UsersArticlesDAO");
                 } catch (Exception e) {
+                    logger.error("Error occurred in method getAll() in class UsersArticlesDAO\n" + e);
                 }
             }
         };
