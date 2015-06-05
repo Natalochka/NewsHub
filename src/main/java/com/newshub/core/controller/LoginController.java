@@ -25,7 +25,7 @@ public class LoginController {
 
     @RequestMapping(method = {RequestMethod.GET})
     public String showLoginPage(ModelMap modelMap) {
-        logger.info("Main page shown successfully in class MainController");
+        logger.info("Login page shown successfully in class LoginController");
         return "login_31";
     }
 
@@ -53,14 +53,14 @@ public class LoginController {
             tabs.setChecked_by_corrector(true);
             tabs.setPublished(true);
             access.setTabs(tabs);
-            modelMap.addAttribute("accessAttr", access);
+            redirectAttributes.addFlashAttribute("access", access);
             logger.info("Editor login performed successfully in method login() in class LoginController");
             return "redirect:/editor";
         } else if (access.getCurrentPrivilege().getName().equals(UsersEnum.CORRECTOR.getName())) {
             tabs.setBeing_processed_by_corrector(true);
             tabs.setChecked_by_corrector(true);
             access.setTabs(tabs);
-            modelMap.addAttribute("accessAttr", access);
+            redirectAttributes.addFlashAttribute("access", access);
             logger.info("Corrector login performed successfully in method login() in class LoginController");
             return "redirect:/corrector";
         } else if (access.getCurrentPrivilege().getName().equals(UsersEnum.AUTHOR.getName())) {
@@ -70,7 +70,7 @@ public class LoginController {
             tabs.setRejected(true);
             tabs.setPublished(true);
             access.setTabs(tabs);
-            modelMap.addAttribute("accessAttr", access);
+            redirectAttributes.addFlashAttribute("access", access);
             logger.info("Author login performed successfully in method login() in class LoginController");
             return "redirect:/author";
         }
