@@ -20,7 +20,7 @@ public class Articles implements HibernateEntity {
     private Boolean approved;
     private Boolean archived;
     private Boolean draft;
-    private Boolean reject;
+    private Boolean rejected;
     private Integer numberOnMain;
     private Timestamp publicationDate;
 
@@ -60,7 +60,7 @@ public class Articles implements HibernateEntity {
         return checked;
     }
 
-    public void setChecked(Boolean edited) {
+    public void setChecked(Boolean checked) {
         this.checked = checked;
     }
 
@@ -126,12 +126,12 @@ public class Articles implements HibernateEntity {
 
     @Basic
     @Column(name = "rejected")
-    public Boolean getReject() {
-        return reject;
+    public Boolean getRejected() {
+        return rejected;
     }
 
-    public void setReject(Boolean reject) {
-        this.reject = reject;
+    public void setRejected(Boolean reject) {
+        this.rejected = reject;
     }
 
     @Basic
@@ -160,7 +160,7 @@ public class Articles implements HibernateEntity {
         if (approved != null ? !approved.equals(articles.approved) : articles.approved != null) return false;
         if (archived != null ? !archived.equals(articles.archived) : articles.archived != null) return false;
         if (draft != null ? !draft.equals(articles.draft) : articles.draft != null) return false;
-        if (reject != null ? !reject.equals(articles.reject) : articles.reject != null) return false;
+        if (rejected != null ? !rejected.equals(articles.rejected) : articles.rejected != null) return false;
         if (numberOnMain != null ? !numberOnMain.equals(articles.numberOnMain) : articles.numberOnMain != null)
             return false;
         return !(publicationDate != null ? !publicationDate.equals(articles.publicationDate) : articles.publicationDate != null);
@@ -178,7 +178,7 @@ public class Articles implements HibernateEntity {
         result = 31 * result + (approved != null ? approved.hashCode() : 0);
         result = 31 * result + (archived != null ? archived.hashCode() : 0);
         result = 31 * result + (draft != null ? draft.hashCode() : 0);
-        result = 31 * result + (reject != null ? reject.hashCode() : 0);
+        result = 31 * result + (rejected != null ? rejected.hashCode() : 0);
         result = 31 * result + (numberOnMain != null ? numberOnMain.hashCode() : 0);
         result = 31 * result + (publicationDate != null ? publicationDate.hashCode() : 0);
         return result;
