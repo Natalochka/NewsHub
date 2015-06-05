@@ -35,7 +35,7 @@ public class AdminController {
      
        @RequestMapping(value = "/redirect_to_page/{page}", method = RequestMethod.GET)
     public String pagesRedirect(@PathVariable String page, Model model/*, @ModelAttribute("access") Access access,*/ /* RedirectAttributes redirectAttributes,*/ /*HttpServletRequest request*/) {
-        logger.info("Page redirect performed successfully in method pagesRedirect() in class MainController");
+        logger.info("Page redirect performed successfully in method pagesRedirect() in class AdminController");
            return "redirect:/admin/" + page + "/page/1";
     }
 
