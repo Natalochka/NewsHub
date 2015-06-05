@@ -6,8 +6,10 @@ import com.newshub.core.domain.Tags;
 import com.newshub.core.utils.ArticlesInfoEntity;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,11 +29,19 @@ public class MainController {
 
     @RequestMapping(method = {RequestMethod.GET})
     public String showMainPage(ModelMap modelMap) {
-        list = getAllArticlesInfoEntity();
-        /*return "redirect:/page/1";*/
         logger.info("Main page shown successfully in class MainController");
-        return "index_1";
+        return "redirect:/connect";
+        /*return "redirect:/pagination/page/1";*/
+        /*return "index_1";*/
     }
+
+
+/*    @ModelAttribute("access")
+    public Access getAccess(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("application_context.xml");
+        Access access = (Access)context.getBean("accessBean");
+        return access;
+    }*/
 
     @ModelAttribute("articlesList")
     public List<Articles> getArticlesList() {
@@ -86,6 +96,35 @@ public class MainController {
         }
         logger.info("AllArticlesInfoEntity got successfully in method getAllArticlesInfoEntity() in class MainController");
         return articlesInfoEntities;
+    }
+
+    @RequestMapping(value = "/pagination/page/{pageNumber}", method = RequestMethod.GET)
+    public String pages(@PathVariable Integer pageNumber, Model model) {
+        List<ArticlesInfoEntity> allEntities = getAllArticlesInfoEntity();
+        List<List<ArticlesInfoEntity>> allArticles = new ArrayList<List<ArticlesInfoEntity>>();
+        int count = 1;
+        List<ArticlesInfoEntity> tempList = new ArrayList<ArticlesInfoEntity>();
+        for (int i = 0; i < allEntities.size(); i++) {
+            if(count == 10 || (i == allEntities.size() - 1)) {
+                tempList.add(allEntities.get(i));
+                allArticles.add(tempList);
+                tempList = new ArrayList<ArticlesInfoEntity>();
+                count = 0;
+            } else {
+                tempList.add(allEntities.get(i));
+            }
+            ++count;
+        }
+        List<Integer> listOfPagesNumbers = new ArrayList<Integer>();
+        model.addAttribute("articles_groups", allArticles);
+        model.addAttribute("articlesInfo", allArticles.get(pageNumber - 1));
+        for(int i = 0; i < allArticles.size(); i++) {
+            listOfPagesNumbers.add(i + 1);
+        }
+        model.addAttribute("pages", listOfPagesNumbers);
+        model.addAttribute("active_page", pageNumber);
+        model.addAttribute("max_page", listOfPagesNumbers.size());
+        return "index_1";
     }
 
 /*    @RequestMapping(method = RequestMethod.GET)
