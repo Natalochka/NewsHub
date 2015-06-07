@@ -103,6 +103,35 @@ public class EditorController {
         return "articles_30";
     }
 
+    @RequestMapping(value = "/show_tags", method = {RequestMethod.GET})
+    public String showAllTags (ModelMap model, HttpServletRequest httpServletRequest){
+        Access access = (Access) httpServletRequest.getSession().getAttribute("access");
+        model.addAttribute("access", access);
+        model.addAttribute("current_nav", "tags");
+        model.addAttribute("current_privilege", access.getCurrentPrivilege().getName());
+        model.addAttribute("tagsList", access.getAllTags());
+        return "articles_30";
+    }
+
+    @RequestMapping(value = "/tag/page/{id}", method = RequestMethod.GET)
+    public String showArticlesByTag(@PathVariable  Integer id, ModelMap modelMap, HttpServletRequest httpServletRequest) {
+        Access access = (Access) httpServletRequest.getSession().getAttribute("access");
+        List<ArticlesInfoEntity> articlesInfoEntities = new ArrayList<ArticlesInfoEntity>();
+        for (Articles article : access.getArticlesByTagId(id)) {
+            ArticlesInfoEntity articlesInfoEntity = new ArticlesInfoEntity();
+            articlesInfoEntity.setArticle(article);
+            List<Tags> tags = access.getTagsByArticleId(article.getId());
+            articlesInfoEntity.setTags(tags);
+            articlesInfoEntity.setUser(access.getUserByArticleId(article.getId()));
+            articlesInfoEntities.add(articlesInfoEntity);
+        }
+        modelMap.addAttribute("articlesInfo", articlesInfoEntities);
+        modelMap.addAttribute("current_nav", "articles_by_tag");
+        modelMap.addAttribute("current_privilege", access.getCurrentPrivilege().getName());
+        modelMap.addAttribute("access", access);  // change
+        return "articles_30";
+    }
+
     public List<ArticlesInfoEntity> getAllDrafts(Access access) {
         List<Articles> list = new ArrayList<>();
         for(Articles article: access.getAllArticles()) {
