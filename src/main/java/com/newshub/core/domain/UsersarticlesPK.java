@@ -16,7 +16,6 @@ public class UsersArticlesPK implements Serializable, HibernateEntity {
     @ManyToOne(cascade= CascadeType.ALL, targetEntity=Articles.class, fetch = FetchType.LAZY)
     @JoinColumn(name="article_id", nullable = false)
     private Articles articleId;
-
     public Users getUserId() {
         return userId;
     }
