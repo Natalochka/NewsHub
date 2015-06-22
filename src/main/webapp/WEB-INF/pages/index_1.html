@@ -1,0 +1,487 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta th:charset="utf-8"/>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
+    <title>NewsHub</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <!--    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js" charset="UTF-8"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js" charset="UTF-8"></script>
+    <script th:src="@{/js/bootstrap.min.js}" charset="UTF-8"></script>
+    <script th:src="@{/js/main.js}" charset="UTF-8"></script>
+
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+</head>
+<body>
+<header id="site-header">
+    <nav class="navbar navbar-default">
+        <div class="wrapper">
+            <div class="col-md-3 col-xs-4 col-xs-offset-5 col-md-offset-0">
+                <h1 class="navbar-brand">
+                    <a th:href="@{|/pagination/page/1|}">
+                        <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
+                        <span class="sub">Join the world</span>
+                        News Hub
+                    </a>
+                </h1>
+            </div>
+            <div class="margin visible-xs visible-sm col-xs-12"></div>
+
+            <form th:action="@{/show_articles_by_search/page/1}" method="post" accept-charset="UTF-8">
+                <div class="search col-md-6 col-xs-">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="text_for_search"
+                               placeholder="Введите название статьи"/>
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary">Поиск</button>
+                                </span>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-3 col-xs-">
+                Contact us: <span class="glyphicon glyphicon-phone-alt"
+                                  aria-hidden="true"> 2015newshub@gmail.com </span>
+                <!--                <a id="contact" class="pull-right" href="" data-toggle="modal" data-target="#send-mail">
+                                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                                    Связаться с нами
+                                </a>-->
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div id="site-content">
+    <div class="wrapper">
+        <!--<main class="col-sm-10">-->
+        <main id="article-container" class="col-lg-9">
+            <th:block th:if="${current_nav.equals('articles')}">
+                <article class="col-lg-12" th:each="ai: ${articlesInfo}">
+                    <div class="thumbnail">
+                        <div th:class="${ai.getArticle().getFeatured()}? 'selected-article' : '' ">
+                            <img th:src="@{|/images/${ai.getArticle().getImage()}|}" title="" alt=""/>
+
+                            <div class="caption">
+                                <h3 th:text="${ai.getArticle().getTitle()}">О природе вещей</h3>
+
+                                <p th:text="${ai.getArticle().getContent()}"></p>
+                                <footer>
+                                    <th:block th:if="!${ai.getTags().isEmpty()}">
+                                        <p class="tags" th:each="t: ${ai.getTags()}">
+                                            <a th:href="@{|/articles_by_tag/page/${t.getId()}|}"
+                                               th:text="${'#'+ t.getName()}"></a>
+                                            <!--<span class="tag"><a href="#">Философия</a></span>-->
+                                        </p>
+                                    </th:block>
+                                    <br/>
+                                    <th:block th:if="${ai.getUser() }">
+                                        <span>
+                                            <p th:text="${'Автор: '+ ai.getUser().getFirstName()} + ' ' + ${ai.getUser().getLastName()}"></p>
+                                        </span>
+                                    </th:block>
+                                    <time th:time="${ai.getArticle().getPublicationDate()}" datetime="2015-05-04 14:18">
+                                        04.05.2015 14:18
+                                    </time>
+                                    <!--<a href="article/article.html" class="btn btn-primary pull-right">Подробнее</a>-->
+                                    <a th:href="@{|/article_page/${ai.getArticle().getId()}|}"
+                                       class="btn btn-primary pull-right">Подробнее</a>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <div id="pagination" class="text-center">
+                    <ul class="pager">
+
+                    </ul>
+                    <ul class="pagination">
+                        <li class="previous pull-left">
+                            <th:block th:if="${active_page > 1}"><a th:href="@{|/pagination/page/${active_page - 1}|}">Назад</a>
+                            </th:block>
+                        </li>
+                        <li class="next pull-right">
+                            <th:block th:if="${active_page != max_page}"><a
+                                    th:href="@{|/pagination/page/${active_page + 1}|}">Вперед</a></th:block>
+                        </li>
+                        <th:block th:each="page: ${pages}">
+                            <li th:class="${active_page == page} ? 'active' : ''"><a
+                                    th:href="@{|/pagination/page/${page}|}" th:text="${page}"></a></li>
+                        </th:block>
+                    </ul>
+                </div>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('search_articles')}">
+                <article class="col-lg-12" th:each="ai: ${articlesInfo}">
+                    <div class="thumbnail">
+                        <div th:class="${ai.getArticle().getFeatured()}? 'selected-article' : '' ">
+                            <img th:src="@{|/images/${ai.getArticle().getImage()}|}" title="" alt=""/>
+
+                            <div class="caption">
+                                <h3 th:text="${ai.getArticle().getTitle()}">О природе вещей</h3>
+
+                                <p th:text="${ai.getArticle().getContent()}"></p>
+                                <footer>
+                                    <th:block th:if="!${ai.getTags().isEmpty()}">
+                                        <p class="tags" th:each="t: ${ai.getTags()}">
+                                            <a th:href="@{|/articles_by_tag/page/${t.getId()}|}"
+                                               th:text="${'#'+ t.getName()}"></a>
+                                            <!--<span class="tag"><a href="#">Философия</a></span>-->
+                                        </p>
+                                    </th:block>
+                                    <br/>
+                                    <th:block th:if="${ai.getUser() }">
+                                        <span>
+                                            <p th:text="${'Автор: '+ ai.getUser().getFirstName()} + ' ' + ${ai.getUser().getLastName()}"></p>
+                                        </span>
+                                    </th:block>
+                                    <time th:time="${ai.getArticle().getPublicationDate()}" datetime="2015-05-04 14:18">
+                                        04.05.2015 14:18
+                                    </time>
+                                    <!--<a href="article/article.html" class="btn btn-primary pull-right">Подробнее</a>-->
+                                    <a th:href="@{|/article_page/${ai.getArticle().getId()}|}"
+                                       class="btn btn-primary pull-right">Подробнее</a>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <div id="pagination" class="text-center">
+                    <ul class="pager">
+
+                    </ul>
+                    <ul class="pagination">
+                        <li class="previous pull-left">
+                            <th:block th:if="${active_page > 1}"><a
+                                    th:href="@{|/show_articles_by_search/page/${active_page - 1}|}">Назад</a>
+                            </th:block>
+                        </li>
+                        <li class="next pull-right">
+                            <th:block th:if="${active_page != max_page}"><a
+                                    th:href="@{|/show_articles_by_search/page/${active_page + 1}|}">Вперед</a>
+                            </th:block>
+                        </li>
+                        <th:block th:each="page: ${pages}">
+                            <li th:class="${active_page == page} ? 'active' : ''"><a
+                                    th:href="@{|/show_articles_by_search/page/${page}|}" th:text="${page}"></a></li>
+                        </th:block>
+                    </ul>
+                </div>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('archive')}">
+                <article class="col-lg-12" th:each="ai: ${articlesInfo}">
+                    <div class="thumbnail">
+                        <div th:class="${ai.getArticle().getFeatured()}? 'selected-article' : '' ">
+                            <img th:src="@{|/images/${ai.getArticle().getImage()}|}" title="" alt=""/>
+
+                            <div class="caption">
+                                <h3 th:text="${ai.getArticle().getTitle()}">О природе вещей</h3>
+
+                                <p th:text="${ai.getArticle().getContent()}"></p>
+                                <footer>
+                                    <th:block th:if="!${ai.getTags().isEmpty()}">
+                                        <p class="tags" th:each="t: ${ai.getTags()}">
+                                            <a th:href="@{|/articles_by_tag/page/${t.getId()}|}"
+                                               th:text="${'#'+ t.getName()}"></a>
+                                            <!--<span class="tag"><a href="#">Философия</a></span>-->
+                                        </p>
+                                    </th:block>
+                                    <br/>
+                                    <th:block th:if="${ai.getUser() }">
+                                        <span>
+                                            <p th:text="${'Автор: '+ ai.getUser().getFirstName()} + ' ' + ${ai.getUser().getLastName()}"></p>
+                                        </span>
+                                    </th:block>
+                                    <time th:time="${ai.getArticle().getPublicationDate()}" datetime="2015-05-04 14:18">
+                                        04.05.2015 14:18
+                                    </time>
+                                    <!--<a href="article/article.html" class="btn btn-primary pull-right">Подробнее</a>-->
+                                    <a th:href="@{|/article_page/${ai.getArticle().getId()}|}"
+                                       class="btn btn-primary pull-right">Подробнее</a>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <div id="pagination" class="text-center">
+                    <ul class="pager">
+
+                    </ul>
+                    <ul class="pagination">
+                        <li class="previous pull-left">
+                            <th:block th:if="${active_page > 1}"><a
+                                    th:href="@{|/show_archives/page/${active_page - 1}|}">Назад</a>
+                            </th:block>
+                        </li>
+                        <li class="next pull-right">
+                            <th:block th:if="${active_page != max_page}"><a
+                                    th:href="@{|/show_archives/page/${active_page + 1}|}">Вперед</a></th:block>
+                        </li>
+                        <th:block th:each="page: ${pages}">
+                            <li th:class="${active_page == page} ? 'active' : ''"><a
+                                    th:href="@{|/show_archives/page/${page}|}" th:text="${page}"></a></li>
+                        </th:block>
+                    </ul>
+                </div>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('one_article')}">
+                <article class="col-lg-12">
+                    <div class="thumbnail">
+                        <img th:src="@{|/images/${article.getArticle().getImage()}|}" title="" alt=""/>
+
+                        <div class="caption">
+                            <h3 th:text="${article.getArticle().getTitle()}">О природе вещей</h3>
+
+                            <p th:text="${article.getArticle().getContent()}"></p>
+                            <footer>
+                                <th:block th:if="!${article.getTags().isEmpty()}">
+                                    <p class="tags" th:each="t: ${article.getTags()}">
+                                        <a th:href="@{|/articles_by_tag/page/${t.getId()}|}"
+                                           th:text="${'#'+ t.getName()}"></a>
+                                    </p>
+                                </th:block>
+                                <br/>
+                                <th:block th:if="${article.getUser() }">
+                                        <span>
+                                            <p th:text="${'Автор: '+ article.getUser().getFirstName()} + ' ' + ${article.getUser().getLastName()}"></p>
+                                        </span>
+                                </th:block>
+                                <time th:time="${article.getArticle().getPublicationDate()}"
+                                      datetime="2015-05-04 14:18">04.05.2015 14:18
+                                </time>
+                            </footer>
+                        </div>
+                    </div>
+                </article>
+
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES * * */
+                    var disqus_shortname = '2015newshub';
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function () {
+                        var dsq = document.createElement('script');
+                        dsq.type = 'text/javascript';
+                        dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+                                                                  rel="nofollow">comments powered by Disqus.</a>
+                </noscript>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('articles_by_tag')}">
+                <article class="col-lg-12" th:each="ai: ${articlesInfo}">
+                    <div class="thumbnail">
+                        <div th:class="${ai.getArticle().getFeatured()}? 'selected-article' : '' ">
+                            <img th:src="@{|/images/${ai.getArticle().getImage()}|}" title="" alt=""/>
+
+                            <div class="caption">
+                                <h3 th:text="${ai.getArticle().getTitle()}">О природе вещей</h3>
+
+                                <p th:text="${ai.getArticle().getContent()}"></p>
+                                <footer>
+                                    <th:block th:if="!${ai.getTags().isEmpty()}">
+                                        <p class="tags" th:each="t: ${ai.getTags()}">
+                                            <a th:href="@{|/articles_by_tag/page/${t.getId()}|}"
+                                               th:text="${'#'+ t.getName()}"></a>
+                                        </p>
+                                    </th:block>
+                                    <br/>
+                                    <th:block th:if="${ai.getUser() }">
+                                        <span>
+                                            <p th:text="${'Автор: '+ ai.getUser().getFirstName()} + ' ' + ${ai.getUser().getLastName()}"></p>
+                                        </span>
+                                    </th:block>
+                                    <time th:time="${ai.getArticle().getPublicationDate()}" datetime="2015-05-04 14:18">
+                                        04.05.2015 14:18
+                                    </time>
+                                    <a th:href="@{|/article_page/${ai.getArticle().getId()}|}"
+                                       class="btn btn-primary pull-right">Подробнее</a>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <div id="pagination" class="text-center">
+                    <ul class="pager">
+
+                    </ul>
+                    <ul class="pagination">
+                        <li class="previous pull-left">
+                            <th:block th:if="${active_page > 1}"><a
+                                    th:href="@{|/articles_by_tag_pagination/page/${active_page - 1}|}">Назад</a>
+                            </th:block>
+                        </li>
+                        <li class="next pull-right">
+                            <th:block th:if="${active_page != max_page}"><a
+                                    th:href="@{|/articles_by_tag_pagination/page/${active_page + 1}|}">Вперед</a>
+                            </th:block>
+                        </li>
+                        <th:block th:each="page: ${pages}">
+                            <li th:class="${active_page == page} ? 'active' : ''"><a
+                                    th:href="@{|/articles_by_tag_pagination/page/${page}|}" th:text="${page}"></a></li>
+                        </th:block>
+                    </ul>
+                </div>
+
+            </th:block>
+
+
+            <th:block th:if="${current_nav.equals('tags')}">
+                <div id="tags-list">
+                    <li th:each="tag : ${tagsInfo}">
+                        <a th:text="${'#'+ tag.name}" th:href="@{|/articles_by_tag/page/${tag.getId()}|}">А нету
+                            тега</a>
+                    </li>
+                </div>
+
+                <div id="pagination" class="text-center">
+                    <ul class="pager">
+
+                    </ul>
+                    <ul class="pagination">
+                        <li class="previous pull-left">
+                            <th:block th:if="${active_page > 1}"><a
+                                    th:href="@{|/tags/page/${active_page - 1}|}">Назад</a></th:block>
+                        </li>
+                        <li class="next pull-right">
+                            <th:block th:if="${active_page != max_page}"><a
+                                    th:href="@{|/tags/page/${active_page + 1}|}">Вперед</a></th:block>
+                        </li>
+                        <th:block th:each="page: ${pages}">
+                            <li th:class="${active_page == page} ? 'active' : ''"><a th:href="@{|/tags/page/${page}|}"
+                                                                                     th:text="${page}"></a></li>
+                        </th:block>
+                    </ul>
+                </div>
+
+            </th:block>
+
+        </main>
+
+        <aside id="navigation" class="col-sm-2">
+            <section id="all-archives">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Архив
+                    </div>
+                    <div class="list-group archive">
+                        <li>
+                            <a class="list-group-item" th:href="@{/show_archives/page/1}">Архив</a>
+                        </li>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="all-tags">
+                <h3>
+                    <a th:href="@{/tags/page/1}">Теги</a>
+                </h3>
+
+                <div id="tag-cloud">
+
+                    <ul th:each="tag : ${tagsList}">
+                        <li><a th:text="${ '#'+tag.name}" th:href="@{|/articles_by_tag/page/${tag.getId()}|}">Котики</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="sinoptik_section">
+                <div id="SinoptikInformer" style="width:160px;" class="SinoptikInformer type1c1">
+                    <div class="siHeader">
+                        <div class="siLh">
+                            <div class="siMh"><a onmousedown="siClickCount();" href="https://sinoptik.ua/" target="_blank">Погода</a><a
+                                    onmousedown="siClickCount();" class="siLogo" href="https://sinoptik.ua/" target="_blank"> </a> <span
+                                    id="siHeader"></span></div>
+                        </div>
+                    </div>
+                    <div class="siBody">
+                        <div class="siCity">
+                            <div class="siCityName"><a onmousedown="siClickCount();" href="https://sinoptik.ua/погода-одесса"
+                                                       target="_blank">Погода в <span>Одессе</span></a></div>
+                            <div id="siCont0" class="siBodyContent">
+                                <div class="siLeft">
+                                    <div class="siTerm"></div>
+                                    <div class="siT" id="siT0"></div>
+                                    <div id="weatherIco0"></div>
+                                </div>
+                                <div class="siInf"><p>влажность: <span id="vl0"></span></p>
+
+                                    <p>давление: <span id="dav0"></span></p>
+
+                                    <p>ветер: <span id="wind0"></span></p></div>
+                            </div>
+                        </div>
+                        <div class="siLinks"><span><a onmousedown="siClickCount();" href="https://sinoptik.ua/погода-кременчуг"
+                                                      target="_blank">Погода в Кременчуге</a>&nbsp;</span><span><a
+                                onmousedown="siClickCount();" href="https://sinoptik.ua/погода-мелитополь" target="_blank">Погода в
+                            Мелитополе</a>&nbsp;</span></div>
+                    </div>
+                    <div class="siFooter">
+                        <div class="siLf">
+                            <div class="siMf"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <script type="text/javascript" charset="UTF-8"
+                        src="//sinoptik.ua/informers_js.php?title=4&amp;wind=3&amp;cities=303018950&amp;lang=ru"></script>
+
+            </section>
+        </aside>
+    </div>
+</div>
+
+
+
+
+<footer id="site-footer">
+    <div class="wrapper">
+        <strong>&copy; CodeArt 2015</strong>
+    </div>
+</footer>
+
+<!--<div class="modal fade" id="send-mail" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Связаться с нами</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Ваше имя:</label>
+                        <input type="text" class="form-control" id="recipient-name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">Сообщение:</label>
+                        <textarea id="message-text" class="form-control" rows="7"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary">Отправить</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+</body>
+</html>

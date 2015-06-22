@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin Panel | News Hub</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}"/>
+    <link rel="stylesheet/less" th:href="@{/css/admin.less}"/>
+    <script charset="UTF-8" src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    <script charset="UTF-8" src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>
+    <script charset="UTF-8" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script charset="UTF-8">tinymce.init({selector: "div#editor textarea", entity_encoding : "raw"});</script>
+    <script th:src="@{/WEB-INF/pages/bootstrap.min.js}"></script>
+    <script charset="UTF-8">
+        $(function () {
+            $('#add-tag').change(function (e) {
+                var tag = $('#add-tag select').val();
+                var temp = $('#add-tag select option:selected').get(0).id;
+                var privilege = 'admin';
+                /*$.get('/getPrivelege', funciton(info){privilege = info;});*/
+                $.get('/' + privilege +'/save_tag/' + temp);
+                $('#tags-list').append('<span><button type="button" class="close" onclick="/"><span>&times;</span></button>' + tag + '</span>');
+                $("#add-tag select :disabled").attr("selected", "selected");
+                makeCloseable();
+            });
+
+            function makeCloseable() {
+                $('#tags-list > span button.close').click(function () {
+                    $(this).parent().remove();
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+<header id="nav-bar" class="col-lg-2 col-md-3 col-sm-4">
+    <h1 id="logo"><a th:href="@{|/pagination/page/1|}">NewsHub</a></h1>
+    <nav>
+        <ul>
+            <th:block th:if="${current_privilege.equals('admin') || current_privilege.equals('editor')}">
+                <li><a th:class="${current_nav.equals('main_page')} ? 'active' : ''"
+                       th:href="@{|/${current_privilege}/redirect_to_page/main_page|}"><span
+                        class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Главная страница</a></li>
+            </th:block>
+            <li><a th:class="${current_nav.equals('articles')} ? 'active' : ''"
+                   th:href="@{|/${current_privilege}|}" data-toggle="tab"><span
+                    class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>Статьи</a></li>
+            <li><a th:class="${current_nav.equals('tags')} ? 'active' : ''"
+                   th:href="@{|/${current_privilege}/show_tags|}" data-toggle="tab"><span
+                    class="glyphicon glyphicon-tags" aria-hidden="true"></span>Теги</a></li>
+            <th:block th:if="${current_privilege.equals('admin')}">
+                <li><a th:class="${current_nav.equals('show_users')} ? 'active' : ''"
+                       th:href="@{|/${current_privilege}/redirect_to_page/show_users|}" data-toggle="tab"><span
+                        class="glyphicon glyphicon-user" aria-hidden="true"></span>Пользователи</a></li>
+            </th:block>
+            <th:block th:if="${current_privilege.equals('admin')}">
+                <li><a th:class="${current_nav.equals('show_privileges')} ? 'active' : ''"
+                       th:href="@{|/${current_privilege}/redirect_to_page/show_privileges|}" data-toggle="tab"><span
+                        class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>Роли</a></li>
+            </th:block>
+            <!--<th:block th:if="${current_privilege.equals('admin')}">
+                <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Настройки</a></li>
+            </th:block>-->
+        </ul>
+    </nav>
+    <a th:href="@{|/${current_privilege}/logout|}" id="exit"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Выйти</a>
+</header>
+
+<div id="content" class="col-lg-10 col-md-9 col-sm-8">
+
+    <th:block th:if="${current_nav.equals('articles') and !(current_privilege.equals('corrector'))}">
+        <a class="btn btn-success" th:href="@{|/${current_privilege}/show_new_article|}"><span
+                class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>Написать статью</a>
+    </th:block>
+    <!--<button type="button" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> Add article</button>-->
+
+    <div class="tabs">
+        <ul class="nav nav-tabs">
+            <th:block th:if="${access.getTabs().isDrafts() and (current_nav.equals('articles'))}">
+                <li th:class="${current_page.equals('drafts')} ? 'active' : ''"><a
+                        th:href="@{|/${current_privilege}/redirect_to_page/drafts|}" data-toggle="tab"><span
+                        class="glyphicon glyphicon-file"></span>Черновики</a></li>
+            </th:block>
+            <th:block th:if="${access.getTabs().isBeing_processed_by_corrector() and (current_nav.equals('articles'))}">
+                <li th:class="${current_page.equals('being_processed_by_corrector')} ? 'active' : ''"><a
+                        th:href="@{|/${current_privilege}/redirect_to_page/being_processed_by_corrector|}"
+                        data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span>В обработке у корректора</a>
+                </li>
+            </th:block>
+            <th:block th:if="${access.getTabs().isBeing_processed_by_editor() and (current_nav.equals('articles'))}">
+                <li th:class="${current_page.equals('being_processed_by_editor')} ? 'active' : ''"><a
+                        th:href="@{|/${current_privilege}/redirect_to_page/being_processed_by_editor|}"
+                        data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span>В обработке у
+                    редактора</a></li>
+            </th:block>
+            <th:block th:if="${access.getTabs().isChecked_by_corrector() and (current_nav.equals('articles'))}">
+                <li th:class="${current_page.equals('checked')} ? 'active' : ''"><a
+                        th:href="@{|/${current_privilege}/redirect_to_page/checked|}" data-toggle="tab"><span
+                        class="glyphicon glyphicon-asterisk"></span>Проверенные корректором</a></li>
+            </th:block>
+            <th:block th:if="${access.getTabs().isRejected() and (current_nav.equals('articles'))}">
+                <li th:class="${current_page.equals('rejected')} ? 'active' : ''"><a
+                        th:href="@{|/${current_privilege}/redirect_to_page/rejected|}" data-toggle="tab"><span
+                        class="glyphicon glyphicon-thumbs-down text-danger"></span>Отклоненные</a></li>
+            </th:block>
+            <th:block th:if="${access.getTabs().isPublished() and (current_nav.equals('articles'))}">
+                <li th:class="${current_page.equals('published')} ? 'active' : ''"><a
+                        th:href="@{|/${current_privilege}/redirect_to_page/published|}" data-toggle="tab"><span
+                        class="glyphicon glyphicon-bullhorn"></span>Опубликованные</a></li>
+            </th:block>
+        </ul>
+
+        <div class="tab-content">
+            <!--Author-->
+
+            <th:block th:if="${current_nav.equals('articles') || current_nav.equals('articles_by_tag')}">
+                <h2>Статьи</h2>
+
+                <div id="tab" class="tab-pane active">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Заголовок</th>
+                            <th>Дата</th>
+                            <th>Автор</th>
+                            <th:block th:if="${current_privilege.equals('corrector') and current_page.equals('being_processed_by_corrector')}">
+                                <th>Проверено</th>
+                            </th:block>
+                            <th:block th:if="${(current_privilege.equals('admin') || current_privilege.equals('editor')) and current_page.equals('being_processed_by_editor')}">
+                                <th>Опубликовать</th>
+                            </th:block>
+                            <th:block th:if="${(current_privilege.equals('admin') || current_privilege.equals('editor')) and current_page.equals('published')}">
+                                <th>Архивирование</th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="ai: ${articlesInfo}">
+                            <td><a th:href="@{|/${current_privilege}/edit_article/${ai.getArticle().getId()}|}" th:text="${ai.getArticle().getTitle()}"></a></td>
+                            <td th:text="${ai.getArticle().getPublicationDate()}"></td>
+                            <th:block th:if="${ai.getUser() != null}"><td th:text="${ai.getUser().getFirstName() + ' ' + ai.getUser().getLastName()}"></td></th:block>
+                            <th:block th:if="${current_privilege.equals('corrector') and current_page.equals('being_processed_by_corrector')}">
+                                <td>
+                                    <form th:action="@{|/${current_privilege}/check_article/${ai.getArticle().getId()}|}" method="get">
+                                        <button type="submit" class="btn btn-sm btn-success">
+                                            <span class="glyphicon glyphicon-thumbs-up">
+                                            </span>
+                                        </button>
+                                    </form>
+                                </td>
+                            </th:block>
+                            <th:block th:if="${(current_privilege.equals('admin') || current_privilege.equals('editor')) and current_page.equals('being_processed_by_editor')}">
+                                <td>
+                                    <form th:action="@{|/${current_privilege}/approve_article/${ai.getArticle().getId()}|}" method="get">
+                                        <button type="submit" class="btn btn-sm btn-success">
+                                            <span class="glyphicon glyphicon-thumbs-up">
+                                            </span>
+                                        </button>
+                                    </form>
+                                </td>
+                            </th:block>
+                            <th:block th:if="${(current_privilege.equals('admin') || current_privilege.equals('editor')) and current_page.equals('published')}">
+                            <td>
+                                <form th:action="@{|/${current_privilege}/archive_article/${ai.getArticle().getId()}|}"
+                                      method="get">
+                                    <th:block th:if="${!ai.getArticle().getArchived()}">
+                                        <button type="submit" class="btn btn-sm btn-success">
+                                            <span class="glyphicon glyphicon-thumbs-up">
+                                            </span>
+                                        </button>
+                                    </th:block>
+                                    <th:block th:if="${ai.getArticle().getArchived()}">
+                                        <button class="btn btn-sm btn-danger">
+                                            <span class="glyphicon glyphicon-thumbs-down">
+                                            </span>
+                                        </button>
+                                    </th:block>
+                                </form>
+                            </td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('main_page')}">
+                <div id="tab2" class="tab-pane active">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Заголовок</th>
+                            <th>Дата</th>
+                            <th>Автор</th>
+                            <th>Фичеринг</th>
+                            <th>Вниз</th>
+                            <th>Вверх</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="ai: ${articlesInfo}">
+                            <td><a th:href="@{|/${current_privilege}/edit_article/${ai.getArticle().getId()}|}" th:text="${ai.getArticle().getTitle()}"></a></td>
+                            <td th:text="${ai.getArticle().getPublicationDate()}"></td>
+                            <td th:text="${ai.getUser().getFirstName() + ' ' + ai.getUser().getLastName()}"></td>
+
+                            <td>
+                                <form th:action="@{|/${current_privilege}/feature_article/${ai.getArticle().getId()}|}"
+                                      method="get">
+                                    <th:block th:if="${ai.getArticle().getFeatured()}">
+                                        <button type="submit" class="btn btn-sm btn-success">
+                                            <span class="glyphicon glyphicon-thumbs-up">
+                                            </span>
+                                        </button>
+                                    </th:block>
+                                    <th:block th:if="${!ai.getArticle().getFeatured()}">
+                                        <button class="btn btn-sm btn-danger">
+                                            <span class="glyphicon glyphicon-thumbs-down">
+                                            </span>
+                                        </button>
+                                    </th:block>
+                                </form>
+                            </td>
+                            <td>
+                                <form th:action="@{|/${current_privilege}/move_up/${ai.getArticle().getId()}|}">
+                                    <button type="submit" class="btn btn-sm btn-success"><span class="glyphicons glyphicons-circle-arrow-top"></span>Вниз</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form th:action="@{|/${current_privilege}/move_down/${ai.getArticle().getId()}|}">
+                                    <button type="submit" class="btn btn-sm btn-success"><span class="glyphicons glyphicons-circle-arrow-down"></span>Вверх</button>
+                                </form>
+                            </td>>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('tags')}">
+                <div id="tags-list">
+                    <span th:each="tag : ${tagsList}">
+                        <a th:text="${tag.name}" th:href="@{|/${current_privilege}/tag/page/${tag.getId()}|}">А нету
+                            тега</a>
+                    </span>
+                </div>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('show_users')}">
+                <div id="tab2" class="tab-pane active">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Логин</th>
+                            <th>Почта</th>
+                            <th>Имя</th>
+                            <th>Фамилия</th>
+                            <th>Тип юзера</th>
+                            <th>Изменить тип юзера</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="ui: ${usersInfo}">
+                            <form th:action="@{|/${current_privilege}/setUser/${ui.getId()}|}" method="get">
+                            <td th:text="${ui.getLogin()}"></td>
+                            <td th:text="${ui.getEmail()}"></td>
+                            <td th:text="${ui.getFirstName()}"></td>
+                            <td th:text="${ui.getLastName()}"></td>
+                            <td th:text="${ui.getPrivilegesByPrivilegeId().getName()}"></td>
+                            <td>
+
+                                <select class="select_privilege" name="select_privilege">
+                                    <option th:each="priv : ${getPrivileges}"
+                                        th:value="${priv}"
+                                        th:id="${priv}"
+                                        th:text="${priv}">
+                                    </option>
+                                </select>
+
+                            </td>
+                            <td><button type="submit" > Применить </button></td>>
+                            </form>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <form th:action="@{|/${current_privilege}/show_user_create|}" method="post">
+                    <button type="submit"> Создать пользователя </button>
+                </form>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('create_user')}">
+                <div id="content" class="col-lg-10 col-md-9 col-sm-8">
+                    <h2>Создать пользователя</h2>
+                    <form method="post" th:action="@{|/${current_privilege}/save_new_user|}" enctype="multipart/form-data">
+                        <span id="upload-file-message"></span>
+                        <div id="new-article" class="form-group">
+                            Логин: <input class="form-control" name="login" placeholder="Логин"/>
+                            Пароль: <input class="form-control" name="password" placeholder="Пароль"/>
+                            E-mail: <input class="form-control" name="email" placeholder="E-mail"/>
+                            First name: <input class="form-control" name="first_name" placeholder="Имя"/>
+                            Last name: <input class="form-control" name="last_name" placeholder="Фамилия"/>
+                            Права:  <select class="select_privilege" name="select_privilege">
+                                <option th:each="priv : ${getPrivileges}"
+                                        th:value="${priv}"
+                                        th:id="${priv}"
+                                        th:text="${priv}">
+                                </option>
+                            </select>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Сохранить
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </th:block>
+<!--                <div>
+                    <form th:action="@{|/${current_privilege}/sent_notification|}" method="post">
+                        <input type="text" id="inputEmail" placeholder="Email" name="email_for_new_user"/>
+                        <th:block th:field="*{priv}">
+                            <select class="select_privilege" name="select_privilege">
+                                <option th:each="priv : ${getPrivileges}"
+                                        th:value="${priv}"
+                                        th:id="${priv}"
+                                        th:text="${priv}">
+                                </option>
+                            </select>
+                        </th:block>
+                        <button type="submit" > Отправить </button>
+                    </form>
+                </div>-->
+
+
+
+            <th:block th:if="${current_nav.equals('show_privileges')}">`
+                <div class="checkbox">
+                    <form th:action="@{|/${current_privilege}/save_privileges|}" method="post">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Добавить статью</th>
+                                <th>Добавить статью на главную</th>
+                                <th>Убрать статью с главной</th>
+                                <th>Редактировать статью</th>
+                                <th>Проверить статью</th>
+                                <th>Утвердить статью</th>
+                                <th>Архивировать статью</th>
+                                <th>Выделить статью</th>
+                                <th>Удалить статью</th>
+                                <th>Создать черновик статьи</th>
+                                <th>Отклонить статью</th>
+                                <th>Добавить картинку</th>
+                                <th>Получить статью</th>
+                                <th>Получить все статьи</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="privilege: ${privilegesInfo}">
+                                <td th:text="${privilege.getName()}"></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_AddArticle'}" th:checked="${privilege.getAddArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_AddArticleToMain'}" th:checked="${privilege.getAddArticleToMain()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_RemoveArticleFromMain'}" th:checked="${privilege.getRemoveArticleFromMain()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_EditArticle'}" th:checked="${privilege.getEditArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_CheckArticle'}" th:checked="${privilege.getCheckArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_ApproveArticle'}" th:checked="${privilege.getApproveArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_ArchiveArticle'}" th:checked="${privilege.getArchiveArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_FeatureArticle'}" th:checked="${privilege.getFeatureArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_DeleteArticle'}" th:checked="${privilege.getDeleteArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_DraftArticle'}" th:checked="${privilege.getDraftArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_RejectArticle'}" th:checked="${privilege.getRejectArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_SetImage'}" th:checked="${privilege.getSetImage()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetArticle'}" th:checked="${privilege.getGetArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetAllArticles'}" th:checked="${privilege.getGetAllArticles()}"/></label></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Получить статьи по тегу</th>
+                                <th>Получить связи типа "статья-тег"</th>
+                                <th>Добавить тег</th>
+                                <th>Добавить тег к статье</th>
+                                <th>Редактировать тег</th>
+                                <th>Удалить тег</th>
+                                <th>Получить тег</th>
+                                <th>Получить все теги</th>
+                                <th>Получить теги статьи</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="privilege: ${privilegesInfo}">
+                                <td th:text="${privilege.getName()}"></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetArticlesByTagId'}" th:checked="${privilege.getGetArticlesByTagId()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetArticlesTags'}" th:checked="${privilege.getGetArticlesTags()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_AddTag'}" th:checked="${privilege.getAddTag()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_AddTagToArticle'}" th:checked="${privilege.getAddTagToArticle()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_EditTag'}" th:checked="${privilege.getEditTag()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_DeleteTag'}" th:checked="${privilege.getDeleteTag()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetTag'}" th:checked="${privilege.getGetTag()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetAllTags'}" th:checked="${privilege.getGetAllTags()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetTagsByArticleId'}" th:checked="${privilege.getGetTagsByArticleId()}"/></label></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Получить автора статьи</th>
+                                <th>Добавить пользователя</th>
+                                <th>Поменять сипсок привилегий пльзователя</th>
+                                <th>Удалить пользователя</th>
+                                <th>Редактировать информацию о пользователе</th>
+                                <th>Получить пользователя</th>
+                                <th>Получить всех пользователей</th>
+                                <th>Получить весь список привилегий</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="privilege: ${privilegesInfo}">
+                                <td th:text="${privilege.getName()}"></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetUserByArticleId'}" th:checked="${privilege.getGetUserByArticleId()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_AddUser'}" th:checked="${privilege.getAddUser()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_ChangeUserPrivileges'}" th:checked="${privilege.getChangeUserPrivileges()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_DeleteUser'}" th:checked="${privilege.getDeleteUser()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_EditUserInfo'}" th:checked="${privilege.getEditUserInfo()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetUser'}" th:checked="${privilege.getGetUser()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetAllUsers'}" th:checked="${privilege.getGetAllUsers()}"/></label></td>
+                                <td><label><input type="checkbox" th:name="${privilege.getName() + '_GetAllPrivileges'}" th:checked="${privilege.getGetAllPrivileges()}"/></label></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <button type="submit" class="btn btn-default" id="name"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Сохранить</button>
+                    </form>
+                </div>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('new_article')}">
+
+                <div id="content" class="col-lg-10 col-md-9 col-sm-8">
+                    <h2>Написать статью</h2>
+                    <form method="post" th:action="@{|/${current_privilege}/save_article|}" enctype="multipart/form-data">
+                        <label for="upload-file-input">Upload your file:</label>
+                        <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
+                        <br />
+                        <span id="upload-file-message"></span>
+                        <div id="new-article" class="form-group">
+                            <input class="form-control" name="title_text" placeholder="Заголовок"/>
+
+                            <div id="tags-list">
+                                <div id="add-tag" class="form-inline">
+                                    <!--<select class="form-control" th:onchange="doAjax(${})">
+                                        <th:block th:each="tl: ${tags_list}">
+                                            <option th:id="'id' + ${tl.getId()}" th:text="${tl.getName()}"></option>
+                                        </th:block>
+                                    </select>-->
+                                    <th:block th:field="*{tl}">
+                                        <select class="select_tl">
+                                            <option th:each="tl : ${tags_list}"
+                                                    th:value="${tl.getName()}"
+                                                    th:id="${tl.getId()}"
+                                                    th:text="${tl.getName()}">Wireframe
+                                            </option>
+                                        </select>
+                                    </th:block>
+                                </div>
+                            </div>
+                            <div id="editor">
+                                <textarea class="form-control" name="content"><!--WYSIWYG редактор--></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Сохранить
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </th:block>
+
+            <th:block th:if="${current_nav.equals('edit_article')}">
+
+                <div id="content" class="col-lg-10 col-md-9 col-sm-8">
+                    <h2>Написать статью</h2>
+                    <form method="post" th:action="@{|/${current_privilege}/save_edited_article|}" enctype="multipart/form-data">
+                        <label for="upload-file-input">Upload your file:</label>
+                        <input id="upload-file-input"  type="file" name="uploadfile" accept="*" />
+                        <br />
+                        <span id="upload-file-message"></span>
+                        <div id="new-article" class="form-group">
+                            <input class="form-control" name="title_text" placeholder="Заголовок" th:value="${title}"/>
+
+                            <div id="tags-list">
+                                <div id="add-tag" class="form-inline">
+                                    <!--<select class="form-control" th:onchange="doAjax(${})">
+                                        <th:block th:each="tl: ${tags_list}">
+                                            <option th:id="'id' + ${tl.getId()}" th:text="${tl.getName()}"></option>
+                                        </th:block>
+                                    </select>-->
+                                    <th:block th:field="*{tl}">
+                                        <select class="select_tl">
+                                            <!--<option selected disabled hidden value="">Добавить тег</option>-->
+                                            <option> Выберите тег </option>
+                                            <option th:each="tl : ${tags_list}"
+                                                    th:value="${tl.getName()}"
+                                                    th:id="${tl.getId()}"
+                                                    th:text="${tl.getName()}">Wireframe
+                                            </option>
+                                        </select>
+                                    </th:block>
+                                </div>
+                                <th:block th:each="tl: ${tagsList}">
+                                <span th:text="${tl.getName()}"><button type="button" class="close"><span>&times;</span></button>''</span>
+                            </th:block>
+                            </div>
+                            <div id="editor">
+                                <textarea class="form-control" name="content" th:text="${content}">WYSIWYG редактор</textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Сохранить
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </th:block>
+
+
+        </div>
+        <div id="pagination" class="text-center">
+            <ul class="pager">
+
+            </ul>
+            <ul class="pagination">
+                <li class="previous pull-left">
+                    <th:block th:if="${active_page > 1}"><a
+                            th:href="@{|/${current_privilege}/${current_page}/page/${active_page - 1}|}">Назад</a>
+                    </th:block>
+                </li>
+                <li class="next pull-right">
+                    <th:block th:if="${active_page != max_page}"><a
+                            th:href="@{|/${current_privilege}/${current_page}/page/${active_page + 1}|}">Вперед</a>
+                    </th:block>
+                </li>
+                <th:block th:each="page: ${pages}">
+                    <li th:class="${active_page == page} ? 'active' : ''"><a
+                            th:href="@{|/${current_privilege}/${current_page}/page/${page}|}" th:text="${page}"></a>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+
+    <div id="table-container">
+
+    </div>
+</div>
+
+
+</body>
+</html>

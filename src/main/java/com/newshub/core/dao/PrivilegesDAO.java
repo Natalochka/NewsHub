@@ -19,15 +19,18 @@ public class PrivilegesDAO implements DAO<Integer, Privileges> {
         this.session = session;
     }
 
-    public void create(Privileges entity) {
+    public Integer create(Privileges entity) {
         try {
+            Integer id = 0;
             session.beginTransaction();
-            session.save(entity);
+            id = (Integer) session.save(entity);
             session.getTransaction().commit();
             logger.info("Privilege created successfully in method create() in class PrivilegesDAO");
+            return id;
         } catch (Exception e) {
             logger.error("Error occurred in method create() in class PrivilegesDAO\n" + e);
         }
+        return null;
     }
 
     public void update(Privileges entity) {

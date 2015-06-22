@@ -1,20 +1,20 @@
 package com.newshub.core.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Natalie_2 on 5/3/2015.
  */
 @Entity
-public class Tags implements HibernateEntity {
+public class Tags implements Serializable, HibernateEntity {
+    private static final long serialVersionUID = 12132121213L;
     private int id;
     private String name;
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue
+    @Column(name = "id", unique = true, nullable = false, precision = 15, scale = 0)
     public int getId() {
         return id;
     }

@@ -2,8 +2,12 @@ package com.newshub.core.services;
 
 import com.newshub.core.dao.ArticlesDAO;
 import com.newshub.core.dao.ArticlesTagsDAO;
+import com.newshub.core.dao.UsersArticlesDAO;
+import com.newshub.core.dao.UsersDAO;
 import com.newshub.core.domain.Articles;
 import com.newshub.core.domain.ArticlesTags;
+import com.newshub.core.domain.UsersArticles;
+import com.newshub.core.domain.UsersArticlesPK;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
@@ -18,6 +22,8 @@ public class ArticlesServices {
     private Session session;
     private ArticlesDAO articlesDAO;
     private ArticlesTagsDAO articlesTagsDAO;
+    private UsersArticlesDAO usersArticlesDAO;
+    private UsersDAO usersDAO;
 
     private Logger logger = Logger.getLogger(ArticlesServices.class);
 
@@ -25,23 +31,40 @@ public class ArticlesServices {
         this.session = session;
         articlesDAO = new ArticlesDAO(this.session);
         articlesTagsDAO = new ArticlesTagsDAO(this.session);
+        usersArticlesDAO = new UsersArticlesDAO(this.session);
+        usersDAO = new UsersDAO(this.session);
     }
 
-    public void addArticle(int id, String title, String content) {
+    public Integer addArticle(String title, String content, String img, Integer userId, Integer numberOnMain) {
         Articles article = new Articles();
-        article.setId(id);
         article.setTitle(title);
         article.setContent(content);
         article.setPublicationDate(new Timestamp(Calendar.getInstance().getTime().getTime()));
+        article.setImage(img);
         article.setDraft(true);
-        articlesDAO.create(article);
+        article.setChecked(false);
+        article.setFeatured(false);
+        article.setApproved(false);
+        article.setArchived(false);
+        article.setRejected(false);
+        article.setNumberOnMain(numberOnMain);
+        Integer id = articlesDAO.create(article);
+        UsersArticles usersArticles = new UsersArticles();
+        UsersArticlesPK usersArticlesPK = new UsersArticlesPK();
+        usersArticlesPK.setArticleId(article);
+        usersArticlesPK.setUserId(usersDAO.get(userId));
+        usersArticles.setUsersArticlesPK(usersArticlesPK);
+        usersArticlesDAO.create(usersArticles);
         logger.info("Article added successfully in method addArticle() in class ArticlesServices");
+        return id;
     }
 
-    public void editArticle(int id, String title, String content) {
+    public void editArticle(Integer id, String title, String content, String img, Integer numberOnMain) {
         Articles article = articlesDAO.get(id);
         article.setTitle(title);
         article.setContent(content);
+        article.setImage(img);
+        article.setNumberOnMain(numberOnMain);
         articlesDAO.update(article);
         logger.info("Article edited successfully in method editArticle() in class ArticlesServices");
     }
@@ -83,7 +106,7 @@ public class ArticlesServices {
 
     public void rejectArticle(int id, Boolean flag) {
         Articles article = articlesDAO.get(id);
-        article.setReject(flag);
+        article.setRejected(flag);
         articlesDAO.update(article);
         logger.info("Article rejected successfully in method rejectArticle() in class ArticlesServices");
     }
@@ -116,7 +139,7 @@ public class ArticlesServices {
     }
 
     public String getImage(int id) {
-        logger.info("Image got successfully in method getImage() in class ArticlesServices");
+        logger.info("Image got successfully in method getSetImage() in class ArticlesServices");
         return articlesDAO.get(id).getImage();
     }
 }

@@ -26,6 +26,7 @@ public class LoginController {
     @RequestMapping(method = {RequestMethod.GET})
     public String showLoginPage(ModelMap modelMap) {
         logger.info("Login page shown successfully in class LoginController");
+        modelMap.addAttribute("current_nav", "login");
         return "login_31";
     }
 
@@ -77,5 +78,6 @@ public class LoginController {
         logger.info("Authentication failed");
         return "redirect:/";
     }
+
 }
 

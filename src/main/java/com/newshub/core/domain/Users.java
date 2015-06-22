@@ -1,12 +1,14 @@
 package com.newshub.core.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Natalie_2 on 5/3/2015.
  */
 @Entity
-public class Users implements HibernateEntity {
+public class Users implements Serializable, HibernateEntity {
+    private static final long serialVersionUID = 1213212131231L;
     private int id;
     private String login;
     private String password;
@@ -16,7 +18,8 @@ public class Users implements HibernateEntity {
     private Privileges privilegesByPrivilegeId;
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue
+    @Column(name = "id", unique = true, nullable = false, precision = 15, scale = 0)
     public int getId() {
         return id;
     }

@@ -1,8 +1,6 @@
 package com.newshub.core.domain;
 
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -10,24 +8,38 @@ import java.io.Serializable;
  */
 @Embeddable
 public class UsersArticlesPK implements Serializable, HibernateEntity {
-    @ManyToOne
+    private static final long serialVersionUID = 121321213L;
+    @ManyToOne(cascade=CascadeType.ALL, targetEntity=Users.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private Users userId;
 
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.ALL, targetEntity=Articles.class, fetch = FetchType.LAZY)
     @JoinColumn(name="article_id", nullable = false)
     private Articles articleId;
+
+    public Users getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Users userId) {
+        this.userId = userId;
+    }
+
+    public Articles getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Articles articleId) {
+        this.articleId = articleId;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         UsersArticlesPK that = (UsersArticlesPK) o;
-
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         return !(articleId != null ? !articleId.equals(that.articleId) : that.articleId != null);
-
     }
 
     @Override

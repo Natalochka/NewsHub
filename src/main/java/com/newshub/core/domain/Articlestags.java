@@ -4,13 +4,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 /**
  * Created by Natalie_2 on 5/3/2015.
  */
 @Transactional
 @Entity
-public class ArticlesTags implements HibernateEntity {
+public class ArticlesTags implements Serializable, HibernateEntity {
+    private static final long serialVersionUID = 12132121223113L;
+
     @EmbeddedId
     private ArticlesTagsPK articlesTagsPK;
 

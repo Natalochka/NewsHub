@@ -9,7 +9,7 @@
       <property name="connection.user">root</property>
       <property name="connection.password"></property>
       <property name="hibernate.connection.characterEncoding">utf-8</property>
-      <property name="hibernate.dialeсt">org.hibernate.dialect.MySQL5Dialect</property>
+      <property name="hibernate.dialeсt">org.hibernate.dialect.MySQLDialect</property>
       <property name="hbm2ddl.auto">update</property>
       <mapping class="com.newshub.core.domain.Articles"/>
       <mapping class="com.newshub.core.domain.ArticlesTags"/>

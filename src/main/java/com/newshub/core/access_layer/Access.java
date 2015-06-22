@@ -2,35 +2,52 @@ package com.newshub.core.access_layer;
 
 import com.newshub.core.domain.*;
 import com.newshub.core.services.ArticlesServices;
+import com.newshub.core.services.CustomServices;
 import com.newshub.core.services.TagsServices;
 import com.newshub.core.services.UsersServices;
 import com.newshub.core.utils.HibernateUtils;
+import com.newshub.core.utils.Tabs;
 import org.hibernate.Session;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Natalie on 25.04.2015.
  */
-public class Access {
+public class Access implements Serializable {
     private Session session;
     private ArticlesServices articlesServices;
     private TagsServices tagsServices;
     private UsersServices usersServices;
+    private CustomServices customServices;
     private Users user;
     private Privileges privilege;
+    private Tabs tabs;
 
     public Access() {
         session = new HibernateUtils().getSession();
         articlesServices = new ArticlesServices(session);
         tagsServices = new TagsServices(session);
         usersServices = new UsersServices(session);
+        customServices = new CustomServices(session);
         privilege = new Privileges();
         privilege.setGetAllArticles(true);
         privilege.setGetAllTags(true);
         privilege.setGetArticlesTags(true);
         privilege.setGetTagsByArticleId(true);
         privilege.setGetUserByArticleId(true);
+        privilege.setGetAllUsers(true);
+        privilege.setGetArticlesByTagId(true);
+        privilege.setGetArticle(true);
+    }
+
+    public Tabs getTabs() {
+        return tabs;
+    }
+
+    public void setTabs(Tabs tabs) {
+        this.tabs = tabs;
     }
 
     public Users getCurrentUser() {
@@ -53,15 +70,16 @@ public class Access {
         return false;
     }
 
-    public void addArticle(int id, String title, String content) {
+    public Integer addArticle(String title, String content, String img, Integer userId, Integer numberOnMain) {
         if (privilege.getAddArticle()) {
-            articlesServices.addArticle(id, title, content);
+            return articlesServices.addArticle(title, content, img, userId, numberOnMain);
         }
+        return 0;
     }
 
-    public void editArticle(int id, String title, String content) {
+    public void editArticle(Integer id, String title, String content, String img, Integer numberOnMain) {
         if (privilege.getEditArticle()) {
-            articlesServices.editArticle(id, title, content);
+            articlesServices.editArticle(id, title, content, img, numberOnMain);
         }
     }
 
@@ -128,7 +146,7 @@ public class Access {
     }
 
     public String getImage(int id) {
-        if (privilege.getImage()) {
+        if (privilege.getSetImage()) {
             return articlesServices.getImage(id);
         }
         return "";
@@ -193,9 +211,9 @@ public class Access {
         return null;
     }
 
-    public void addUser(int privilegeId, int id, String login, String password, String email, String firstName, String lastName) {
+    public void addUser(int privilegeId, String login, String password, String email, String firstName, String lastName) {
         if (privilege.getAddUser()) {
-            usersServices.addUser(privilegeId, id, login, password, email, firstName, lastName);
+            usersServices.addUser(privilegeId, login, password, email, firstName, lastName);
         }
     }
 
@@ -211,9 +229,9 @@ public class Access {
         }
     }
 
-    public void editUserInfo(int id, String login, String password, String email, String firstName, String lastName) {
+    public void editUserInfo(int id, String login, String password, String email, String firstName, String lastName, Integer privilegeId) {
         if (privilege.getEditUserInfo()) {
-            usersServices.editUserInfo(id, login, password, email, firstName, lastName);
+            usersServices.editUserInfo(id, login, password, email, firstName, lastName, privilegeId);
         }
     }
 
@@ -231,11 +249,38 @@ public class Access {
         return null;
     }
 
+    public List<Privileges> getAllPrivileges() {
+        if (privilege.getGetAllPrivileges()) {
+            return usersServices.getAllPrivileges();
+        }
+        return null;
+    }
+
     public Users getUserByArticleId (int articleId){
         if (privilege.getGetUserByArticleId()) {
             return usersServices.getUserByArticleId(articleId);
         }
         return null;
+    }
+
+    public List<Integer> getSearchedArticles(String title) {
+        return customServices.getSearchedArticles(title);
+    }
+
+    public Integer getMaxNumberOnMain() {
+        return customServices.getMaxNumberOnMain();
+    }
+
+    public String getLastImageNumber() {
+        return customServices.getLastImageNumber();
+    }
+
+    public void setPrivileges(List<Privileges> list) {
+        usersServices.setPrivileges(list);
+    }
+
+    public Privileges getPrivilegeByName(String name){
+        return usersServices.getPrivilegeByName(name);
     }
 
     public void close() {

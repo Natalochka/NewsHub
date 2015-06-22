@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Natalie on 24.04.2015.
  */
 public class DAOUtils {
-    String encryption(String loginInfo) {
+    public static String encryption(String loginInfo) {
         MD5State md5State = new MD5State();
         md5State.update(loginInfo.getBytes());
         Fingerprint hash = md5State.calculate();

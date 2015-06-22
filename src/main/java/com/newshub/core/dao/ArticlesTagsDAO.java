@@ -20,16 +20,18 @@ public class ArticlesTagsDAO implements DAO<ArticlesTagsPK, ArticlesTags> {
         this.session = session;
     }
 
-    public void create(ArticlesTags entity) {
-
+    public ArticlesTagsPK create(ArticlesTags entity) {
         try {
+            ArticlesTagsPK id = new ArticlesTagsPK();
             session.beginTransaction();
-            session.save(entity);
+            id = (ArticlesTagsPK)session.save(entity);
             session.getTransaction().commit();
             logger.info("ArticlesTags entity created successfully in method create() in class ArticlesTagsDAO");
+            return id;
         } catch (Exception e) {
             logger.error("Error occurred in method create() in class ArticlesTagsDAO\n" + e);
         }
+        return null;
     }
 
     public void update(ArticlesTags entity) {

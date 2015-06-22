@@ -19,15 +19,18 @@ public class TagsDAO implements DAO<Integer, Tags> {
         this.session = session;
     }
 
-    public void create(Tags entity) {
+    public Integer create(Tags entity) {
         try {
+            Integer id = 0;
             session.beginTransaction();
-            session.save(entity);
+            id = (Integer) session.save(entity);
             session.getTransaction().commit();
             logger.info("Tag created successfully in method create() in class TagsDAO");
+            return id;
         } catch (Exception e) {
             logger.error("Error occurred in method create() in class TagsDAO\n" + e);
         }
+        return null;
     }
 
     public void update(Tags entity) {

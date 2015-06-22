@@ -1,8 +1,6 @@
 package com.newshub.core.domain;
 
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -10,11 +8,12 @@ import java.io.Serializable;
  */
 @Embeddable
 public class ArticlesTagsPK implements Serializable, HibernateEntity {
-    @ManyToOne
+    private static final long serialVersionUID = 12132121212313L;
+    @ManyToOne(cascade= CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id", nullable = false)
     private Articles articleId;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="tag_id", nullable = false)
     private Tags tagId;
 

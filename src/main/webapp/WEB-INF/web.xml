@@ -20,5 +20,9 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
+    <error-page>
+        <!-- Uncaught exception -->
+        <error-code>500</error-code>
+        <location>/WEB-INF/pages/general-error.html</location>
+    </error-page>
 </web-app>

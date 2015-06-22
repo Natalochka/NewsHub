@@ -1,12 +1,17 @@
 package com.newshub.core.utils;
 
+import com.newshub.core.controller.AdminController;
+import org.apache.log4j.Logger;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class MessagesClass {
-    protected synchronized void sendMessage(String sendTo, String subject, String text) throws Exception {
+
+    private Logger logger = Logger.getLogger(AdminController.class);
+    public synchronized void sendMessage(String sendTo, String subject, String text) throws Exception {
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -17,7 +22,7 @@ public class MessagesClass {
 
         Session mailSession = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("2015newshub@gmail.com", "newshub2015");
+                return new PasswordAuthentication("2015newshub@gmail.com", "News2015Hub");
             }
         });
 
@@ -31,8 +36,10 @@ public class MessagesClass {
 
             Transport.send(message);
         } catch (MessagingException e) {
-            throw new Exception(e);
+            logger.error("Error occurred in method sendMessage() in class MessagesClass:\n", e);
         }
+        logger.info("Message sent successfully in method sendMessage() in class MessagesClass");
+
     }
 
 }

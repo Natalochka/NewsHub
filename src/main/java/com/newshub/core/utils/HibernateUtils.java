@@ -13,10 +13,6 @@ public class HibernateUtils {
     private static final SessionFactory sessionFactory;
     private static StandardServiceRegistry serviceRegistry;
 
-    /*public HibernateUtils (){
-        Locale.setDefault(Locale.ENGLISH);
-    }*/
-
     static {
         Configuration configuration = new Configuration().configure();
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();

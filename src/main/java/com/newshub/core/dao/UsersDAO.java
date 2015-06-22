@@ -19,15 +19,18 @@ public class UsersDAO implements DAO<Integer, Users> {
         this.session = session;
     }
 
-    public void create(Users entity) {
+    public Integer create(Users entity) {
         try {
+            Integer id = 0;
             session.beginTransaction();
-            session.save(entity);
+            id = (Integer) session.save(entity);
             session.getTransaction().commit();
             logger.info("User created successfully in method create() in class UsersDAO");
+            return id;
         } catch (Exception e) {
             logger.error("Error occurred in method create() in class UsersDAO\n" + e);
         }
+        return null;
     }
 
     public void update(Users entity) {

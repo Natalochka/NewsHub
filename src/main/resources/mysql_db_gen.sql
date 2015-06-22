@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Articles (
+CREATE TABLE Articles (
   id               INT PRIMARY KEY AUTO_INCREMENT,
   title            VARCHAR(255) NOT NULL,
   content          TEXT,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS ArticlesTags (
   PRIMARY KEY (article_id, tag_id)
 );
 
-CREATE TABLE IF NOT EXISTS Privileges (
+CREATE TABLE Privileges (
   id                    INT PRIMARY KEY AUTO_INCREMENT,
   name                  VARCHAR(25) NOT NULL UNIQUE,
   addArticle            BOOLEAN     NOT NULL,
@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS Privileges (
   getTag                BOOLEAN     NOT NULL,
   getAllTags            BOOLEAN     NOT NULL,
   getTagsByArticleId    BOOLEAN     NOT NULL,
+  getUserByArticleId    BOOLEAN     NOT NULL,
   addUser               BOOLEAN     NOT NULL,
   changeUserPrivileges  BOOLEAN     NOT NULL,
   deleteUser            BOOLEAN     NOT NULL,
@@ -63,7 +64,7 @@ CREATE TABLE IF NOT EXISTS Privileges (
 CREATE TABLE IF NOT EXISTS Users (
   id           INT PRIMARY KEY AUTO_INCREMENT,
   login        VARCHAR(50) NOT NULL UNIQUE,
-  password     VARCHAR(36) NOT NULL UNIQUE,
+  password     VARCHAR(36) NOT NULL,
   email        VARCHAR(50) NOT NULL,
   first_name   VARCHAR(25) NOT NULL,
   last_name    VARCHAR(25) NOT NULL,

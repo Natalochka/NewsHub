@@ -2,17 +2,21 @@ package com.newshub.core.domain;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by Natalie_2 on 5/3/2015.
  */
 @Entity
-public class Privileges implements HibernateEntity {
+public class Privileges implements Serializable, HibernateEntity {
+    private static final long serialVersionUID = 121321212121233L;
     private int id;
 
     @Id
-    @javax.persistence.Column(name = "id")
+    @GeneratedValue
+    @javax.persistence.Column(name = "id", unique = true, nullable = false, precision = 15, scale = 0)
     public int getId() {
         return id;
     }
@@ -254,6 +258,22 @@ public class Privileges implements HibernateEntity {
     }
 
 
+
+
+    private boolean addArticleToMain;
+
+    @Basic
+    @javax.persistence.Column(name = "addArticleToMain")
+    public boolean getAddArticleToMain() {
+        return addArticleToMain;
+    }
+
+    public void setAddArticleToMain(boolean addArticleToMain) {
+        this.addArticleToMain = addArticleToMain;
+    }
+
+
+
     private boolean addUser;
 
     @Basic
@@ -356,12 +376,25 @@ public class Privileges implements HibernateEntity {
 
     @Basic
     @javax.persistence.Column(name = "setImage")
-    public boolean getImage() {
+    public boolean getSetImage() {
         return setImage;
     }
 
-    public void setImage(boolean setImage) {
+    public void setSetImage(boolean setImage) {
         this.setImage = setImage;
+    }
+
+    private boolean removeArticleFromMain;
+
+
+    @Basic
+    @javax.persistence.Column(name = "removeArticleFromMain")
+    public boolean getRemoveArticleFromMain() {
+        return removeArticleFromMain;
+    }
+
+    public void setRemoveArticleFromMain(boolean removeArticleFromMain) {
+        this.removeArticleFromMain = removeArticleFromMain;
     }
 
     private boolean getUserByArticleId;
@@ -374,6 +407,18 @@ public class Privileges implements HibernateEntity {
 
     public void setGetUserByArticleId(boolean getUserByArticleId) {
         this.getUserByArticleId = getUserByArticleId;
+    }
+
+    private boolean getAllPrivileges;
+
+    @Basic
+    @javax.persistence.Column(name = "getAllPrivileges")
+    public boolean getGetAllPrivileges() {
+        return getAllPrivileges;
+    }
+
+    public void setGetAllPrivileges(boolean getAllPrivileges) {
+        this.getAllPrivileges = getAllPrivileges;
     }
 
     @Override
@@ -412,6 +457,7 @@ public class Privileges implements HibernateEntity {
         if (rejectArticle != that.rejectArticle) return false;
         if (setImage != that.setImage) return false;
         if (getUserByArticleId != that.getUserByArticleId) return false;
+        if (getAllPrivileges != that.getAllPrivileges) return false;
         return !(name != null ? !name.equals(that.name) : that.name != null);
 
     }
@@ -448,6 +494,7 @@ public class Privileges implements HibernateEntity {
         result = 31 * result + (rejectArticle ? 1 : 0);
         result = 31 * result + (setImage ? 1 : 0);
         result = 31 * result + (getUserByArticleId ? 1 : 0);
+        result = 31 * result + (getAllPrivileges ? 1 : 0);
         return result;
     }
 }

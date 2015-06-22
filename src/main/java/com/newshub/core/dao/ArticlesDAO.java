@@ -20,15 +20,18 @@ public class ArticlesDAO implements DAO<Integer, Articles> {
         this.session = session;
     }
 
-    public void create(Articles entity) {
+    public Integer create(Articles entity) {
         try {
+            Integer id = 0;
             session.beginTransaction();
-            session.save(entity);
+            id = (Integer) session.save(entity);
             session.getTransaction().commit();
             logger.info("Article created successfully in method create() class ArticlesDAO");
+            return id;
         } catch (Exception e) {
             logger.error("Error occurred in method create() in class ArticlesDAO\n" + e);
         }
+        return null;
     }
 
     public void update(Articles entity) {

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface DAO<K, T extends HibernateEntity>{
 
-    void create (T entity);
+    K create (T entity);
     void update (T entity);
     void delete(K id);
     T get(K id);
