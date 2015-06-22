@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Transactional
 @Entity
 public class UsersArticles implements HibernateEntity, Serializable{
+
     private static final long serialVersionUID = 121321213133L;
     @EmbeddedId
 private UsersArticlesPK usersArticlesPK;

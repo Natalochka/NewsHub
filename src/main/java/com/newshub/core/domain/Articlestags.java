@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Transactional
 @Entity
 public class ArticlesTags implements Serializable, HibernateEntity {
+
     private static final long serialVersionUID = 12132121223113L;
 
     @EmbeddedId

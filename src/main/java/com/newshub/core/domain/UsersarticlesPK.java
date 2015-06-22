@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 @Embeddable
 public class UsersArticlesPK implements Serializable, HibernateEntity {
+
     private static final long serialVersionUID = 121321213L;
     @ManyToOne(cascade=CascadeType.ALL, targetEntity=Users.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
