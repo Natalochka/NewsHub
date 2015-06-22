@@ -1,10 +1,7 @@
 package com.newshub.core.access_layer;
 
 import com.newshub.core.domain.*;
-import com.newshub.core.services.ArticlesServices;
-import com.newshub.core.services.CustomServices;
-import com.newshub.core.services.TagsServices;
-import com.newshub.core.services.UsersServices;
+import com.newshub.core.services.*;
 import com.newshub.core.utils.HibernateUtils;
 import com.newshub.core.utils.Tabs;
 import org.hibernate.Session;
